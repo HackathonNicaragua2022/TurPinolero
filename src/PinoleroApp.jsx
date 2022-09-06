@@ -13,7 +13,7 @@ function PinoleroApp() {
       <div className="grid justify-items-center mt-15">
         <img
           style={{ height: "160px" }}
-          src="https://cervezatona.com/wp-content/uploads/2021/11/bird.png"
+          src="https://img.freepik.com/premium-vector/travel-logo-images-illustration_600494-1145.jpg?w=360"
         />
         <TextField
           style={{ width: "400px" }}
