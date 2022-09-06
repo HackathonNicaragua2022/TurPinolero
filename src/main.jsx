@@ -1,10 +1,19 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import PinoleroApp from "./PinoleroApp";
+import "./index.css";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const darkTheme = createTheme({
+  palette: {
+    mode: "light", //dark
+  },
+});
+
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={darkTheme}>
+      <PinoleroApp />
+    </ThemeProvider>
   </React.StrictMode>
-)
+);
