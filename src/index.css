@@ -1,3 +1,11 @@
+.inputRounded .MuiOutlinedInput-root {
+  border-radius: 30px;
+}
+
+.mano {
+  cursor: pointer;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
