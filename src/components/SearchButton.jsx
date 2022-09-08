@@ -20,8 +20,8 @@ export const SearchButton = () => {
       variant="outlined"
       onChange={handleChange}
       value={searchText}
-      className="inputRounded"
-      placeholder="Buscar sitio"
+      className="inputRounded animate__animated animate__bounce"
+      placeholder="Buscar sitio turístico o comercio"
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">

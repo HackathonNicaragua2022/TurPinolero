@@ -1,6 +1,7 @@
-import { Button, Grid } from "@mui/material";
-import { Add, LocationOnOutlined, PoolOutlined } from "@mui/icons-material";
+import Button from "@mui/material/Button";
+import { Add as AddIcon, LocationOnOutlined, PoolOutlined } from "@mui/icons-material";
 import { SearchButton } from "./components";
+import 'animate.css';
 
 function PinoleroApp() {
   return (
@@ -9,19 +10,18 @@ function PinoleroApp() {
       <div className="flex justify-between">
         <div className="p-2">
           <img
-            style={{ height: "100px" }}
-            src="https://img.freepik.com/premium-vector/travel-logo-images-illustration_600494-1145.jpg?w=360"
+            src="https://img.freepik.com/premium-vector/travel-logo-images-illustration_600494-1145.jpg?w=100"
           />
         </div>
         <div className="p-2">
-          <Button startIcon={<Add />} size="small" variant="contained">
+          <Button className="animate__animated animate__fadeInRight" startIcon={<AddIcon />} size="small" variant="contained">
             PUBLICAR UN SITIO
           </Button>
         </div>
       </div>
 
       {/* BOTON BÚSQUEDA */}
-      <div className="flex justify-center bg-slate-500 sm:px-10">
+      <div className="flex justify-center sm:px-10 mt-5">
         <SearchButton />
       </div>
 
@@ -34,7 +34,7 @@ function PinoleroApp() {
             style={{ width: "130px" }}
             variant="outlined"
           >
-            UBICACIÓN
+            UBICACIONES
           </Button>
         </div>
         <div>
@@ -44,7 +44,7 @@ function PinoleroApp() {
             style={{ width: "130px" }}
             variant="outlined"
           >
-            TIPO
+            TIPOS
           </Button>
         </div>
       </div>
