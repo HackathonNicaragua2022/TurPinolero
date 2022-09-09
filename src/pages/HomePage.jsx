@@ -4,9 +4,29 @@ import {
   LocationOnOutlined as LocationIcon,
   PoolOutlined as PoolIcon,
 } from "@mui/icons-material";
-import { SearchButton } from "./components";
+import { SearchButton } from "../components";
+import { createSearchParams, useNavigate } from "react-router-dom";
 
-function PinoleroApp() {
+export const HomePage = () => {
+
+  const navigate =  useNavigate();
+
+  
+
+  const iniciarBusqueda = (searchText) => {
+
+    // TODO: Crear filtros para búsqueda
+    navigate({
+        pathname: "buscar",
+        search: createSearchParams({
+            texto: searchText,
+            ubicacion: 'Managua',
+            tipo: 'Piscina'
+        }).toString()
+    });
+
+  };
+
   return (
     <>
       {/* HEAD */}
@@ -20,6 +40,7 @@ function PinoleroApp() {
             startIcon={<AddIcon />}
             size="small"
             variant="contained"
+            onClick={() => <Navigate to="/nuevo" />}
           >
             PUBLICAR UN SITIO
           </Button>
@@ -28,7 +49,7 @@ function PinoleroApp() {
 
       {/* BOTON BÚSQUEDA */}
       <div className="flex justify-center sm:px-10 mt-5">
-        <SearchButton />
+        <SearchButton iniciarBusqueda={iniciarBusqueda} />
       </div>
 
       {/* BOTONES DE FILTRO */}
@@ -56,6 +77,4 @@ function PinoleroApp() {
       </div>
     </>
   );
-}
-
-export default PinoleroApp;
+};
