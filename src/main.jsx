@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import PinoleroApp from "./PinoleroApp";
-import "./index.css";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import "animate.css";
+import "./index.css";
 
 const darkTheme = createTheme({
   palette: {

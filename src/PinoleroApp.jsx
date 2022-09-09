@@ -1,7 +1,10 @@
 import Button from "@mui/material/Button";
-import { Add as AddIcon, LocationOnOutlined, PoolOutlined } from "@mui/icons-material";
+import {
+  Add as AddIcon,
+  LocationOnOutlined as LocationIcon,
+  PoolOutlined as PoolIcon,
+} from "@mui/icons-material";
 import { SearchButton } from "./components";
-import 'animate.css';
 
 function PinoleroApp() {
   return (
@@ -9,12 +12,15 @@ function PinoleroApp() {
       {/* HEAD */}
       <div className="flex justify-between">
         <div className="p-2">
-          <img
-            src="https://img.freepik.com/premium-vector/travel-logo-images-illustration_600494-1145.jpg?w=100"
-          />
+          <img src="https://img.freepik.com/premium-vector/travel-logo-images-illustration_600494-1145.jpg?w=100" />
         </div>
         <div className="p-2">
-          <Button className="animate__animated animate__fadeInRight" startIcon={<AddIcon />} size="small" variant="contained">
+          <Button
+            className="animate__animated animate__fadeInRight"
+            startIcon={<AddIcon />}
+            size="small"
+            variant="contained"
+          >
             PUBLICAR UN SITIO
           </Button>
         </div>
@@ -29,7 +35,7 @@ function PinoleroApp() {
       <div className="flex justify-center space-x-8 mt-5">
         <div>
           <Button
-            startIcon={<LocationOnOutlined />}
+            startIcon={<LocationIcon />}
             size="small"
             style={{ width: "130px" }}
             variant="outlined"
@@ -39,7 +45,7 @@ function PinoleroApp() {
         </div>
         <div>
           <Button
-            startIcon={<PoolOutlined />}
+            startIcon={<PoolIcon />}
             size="small"
             style={{ width: "130px" }}
             variant="outlined"
