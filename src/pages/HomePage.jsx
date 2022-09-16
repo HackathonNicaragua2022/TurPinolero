@@ -32,7 +32,7 @@ export const HomePage = () => {
   return (
     <>
       {/* HEAD */}
-      <div className="flex justify-between ">
+      <div className="flex justify-between">
         <div className="p-2">
           <img
             src="https://img.freepik.com/premium-vector/travel-logo-images-illustration_600494-1145.jpg?w=100"
