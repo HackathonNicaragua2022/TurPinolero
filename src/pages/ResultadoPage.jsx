@@ -1,7 +1,7 @@
 import queryString from 'query-string';
 import { useLocation, useParams } from "react-router-dom";
 
-export const BuscarPage = () => {
+export const ResultadoPage = () => {
   
   const location = useLocation();
 

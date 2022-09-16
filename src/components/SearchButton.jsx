@@ -63,7 +63,7 @@ export const SearchButton = ({ iniciarBusqueda }) => {
           variant="outlined"
           onChange={handleChange}
           value={searchText}
-          className="inputRounded animate__animated animate__bounce"
+          className="inputRounded animate__animated animate__fadeIn"
           placeholder=""
           InputProps={{
             startAdornment: (
@@ -84,8 +84,8 @@ export const SearchButton = ({ iniciarBusqueda }) => {
           }}
         />
         <br />
-        <div className="text-xs text-center mt-1 text-gray-600">
-          <i className="">- Buscar sitios turísticos o comercios -</i>
+        <div className="text-center mt-2 text-gray-600">
+          <i className="">Tu Wiki Turística Nicaragüense</i>
         </div>
       </form>
     </>
