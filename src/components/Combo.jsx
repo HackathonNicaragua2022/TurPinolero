@@ -12,7 +12,7 @@ export const Combo = ({ name, data, newChange }) => {
   };
 
   return (
-    <FormControl sx={{ m: 0, minWidth: 200 }} size="small">
+    <FormControl sx={{ m: 0, minWidth: 200 }} size="small">    
       <InputLabel id="demo-select-small">{name}</InputLabel>
       <Select
         labelId="demo-select-small"
