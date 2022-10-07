@@ -13,17 +13,15 @@ export const Combo = ({ name, data, newChange }) => {
 
   return (
     <FormControl sx={{ m: 0, minWidth: 200 }} size="small">    
-      <InputLabel id="demo-select-small">{name}</InputLabel>
+      <InputLabel>{name}</InputLabel>
       <Select
-        labelId="demo-select-small"
-        id="demo-select-small"
         value={value}
         label={name}
         onChange={handleChange}
         required={true}
       >
         {data.map((item) => (
-          <MenuItem key={item.id} value={item.id}>
+          <MenuItem key={item.id + item.text} value={item.id}>
             {item.text}
           </MenuItem>
         ))}

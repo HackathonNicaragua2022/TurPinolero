@@ -1,1 +1,1 @@
-export * from './municipios';
+export * from './catalogos';
