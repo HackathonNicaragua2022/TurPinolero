@@ -1,9 +1,10 @@
-import { Button, TextField } from "@mui/material";
+import { Button, Grid, TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { useForm } from "react-hook-form";
 import { Municipios } from "../data";
 import GoogleMapReact from "google-map-react";
 import { Combo } from "../components";
+
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
@@ -30,6 +31,22 @@ export const NuevoPage = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
+        
+        <Grid container spacing={2}>
+          <Grid item xs={8}>
+            <Item>xs=8</Item>
+          </Grid>
+          <Grid item xs={4}>
+            <Item>xs=4</Item>
+          </Grid>
+          <Grid item xs={4}>
+            <Item>xs=4</Item>
+          </Grid>
+          <Grid item xs={8}>
+            <Item>xs=8</Item>
+          </Grid>
+        </Grid>
+
         <div className="container mx-auto mt-2">
           <TextField
             label="Nombre Sitio/Comercio"
@@ -54,6 +71,14 @@ export const NuevoPage = () => {
             rows={4}
             {...register("direccion")}
           />
+          <TextField
+            label="Descripción"
+            type="text"
+            size="small"
+            multiline
+            rows={4}
+            {...register("descripcion")}
+          />
           <Combo
             name="Municipios *"
             data={Municipios}
@@ -63,7 +88,7 @@ export const NuevoPage = () => {
             ENVIAR INFORMACIÓN
           </Button>
 
-          <div style={{ height: "100vh", width: "100%" }}>
+          {/* <div style={{ height: "100vh", width: "100%" }}>
             <GoogleMapReact
               bootstrapURLKeys={{
                 key: "AIzaSyArCDx3fBJxlJJMMgbLGQm4Id_FWl8YME8",
@@ -77,7 +102,7 @@ export const NuevoPage = () => {
                 text="My Marker"
               />
             </GoogleMapReact>
-          </div>
+          </div> */}
         </div>
       </form>
     </>
