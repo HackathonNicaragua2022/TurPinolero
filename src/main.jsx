@@ -6,9 +6,7 @@ import "animate.css";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <NicaWikiApp />
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <NicaWikiApp />
+  </BrowserRouter>
 );
