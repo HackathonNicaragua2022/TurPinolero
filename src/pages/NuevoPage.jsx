@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Grid, TextField, Container, Box } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
@@ -5,6 +6,9 @@ import { Combo, MapaPicker } from "../components";
 import { Departamentos, Municipios } from "../data";
 
 export const NuevoPage = () => {
+  const [catMunicipios, setCatMunicipios] = useState(Municipios);
+  const [valueMunicipio, setValueMunicipio] = useState("");
+
   const {
     register,
     formState: { errors },
@@ -16,8 +20,15 @@ export const NuevoPage = () => {
     console.log(data);
   };
 
-  const cambiaDepartamento = (valor) => {
-    setValue("Departamento", valor);
+  const cambiaDepartamento = (DepartamentoId) => {
+    const FiltroMunicipios = Municipios.filter(
+      (municipio) => municipio.departamento === DepartamentoId
+    );
+
+    setCatMunicipios(FiltroMunicipios);
+    setValueMunicipio("");
+
+    setValue("Departamento", DepartamentoId); // En UseForm
   };
 
   return (
@@ -44,14 +55,15 @@ export const NuevoPage = () => {
               <Combo
                 name="Departamentos"
                 data={Departamentos}
-                newChange={(v) => cambiaDepartamento(v)}
+                newChange={(value) => cambiaDepartamento(value)}
               />
             </Grid>
             <Grid item xs={4}>
               <Combo
                 name="Municipios"
-                data={Municipios}
-                newChange={(v) => setValue("Municipio", v)}
+                value={valueMunicipio}
+                data={catMunicipios}
+                newChange={(value) => setValue("Municipio", value)}
               />
             </Grid>
             <Grid item xs={8}>

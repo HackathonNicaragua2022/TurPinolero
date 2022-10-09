@@ -2,8 +2,8 @@ import { useState } from "react";
 import { FormControl, InputLabel, MenuItem } from "@mui/material";
 import Select from "@mui/material/Select";
 
-export const Combo = ({ name, data, newChange }) => {
-  const [value, setValue] = useState("");
+export const Combo = ({ name, data, newChange, defaultValue = "" }) => {
+  const [value, setValue] = useState(defaultValue);
 
   const handleChange = (event) => {
     const selected = event.target.value;
@@ -12,7 +12,7 @@ export const Combo = ({ name, data, newChange }) => {
   };
 
   return (
-    <FormControl sx={{ m: 0, minWidth: 200 }} size="small">    
+    <FormControl sx={{ m: 0, minWidth: 200 }} size="small">
       <InputLabel>{name}</InputLabel>
       <Select
         value={value}
