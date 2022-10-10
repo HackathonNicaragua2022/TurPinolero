@@ -5,6 +5,7 @@ import SendIcon from '@mui/icons-material/Send';
 import { Combo, MapaPicker } from '../components';
 import { Departamentos, Municipios } from '../data';
 import { TextInput } from '../components/TextInput';
+import MultipleSelectChip from '../components/MultipleSelectChip';
 
 export const NuevoPage = () => {
 	const [catMunicipios, setCatMunicipios] = useState(Municipios);
@@ -32,6 +33,8 @@ export const NuevoPage = () => {
 
 	return (
 		<>
+			<MultipleSelectChip />
+
 			<Container
 				fixed
 				style={{ backgroundColor: '#CFF5EE' }}
@@ -111,7 +114,7 @@ export const NuevoPage = () => {
 							item
 							xs={8}
 						>
-							<MapaPicker />
+							{/* <MapaPicker /> */}
 						</Grid>
 
 						<Button

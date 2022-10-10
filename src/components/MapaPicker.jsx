@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import MapPicker from 'react-google-map-picker';
-import { DefaultLatitud, DefaultLongitud, GoogleMapKey } from '../data';
+import { DEFAULT_LATITUD, DEFAULT_LONGITUD, GOOGLE_MAP_KEY } from '../data';
 
-const DefaultLocation = { lat: DefaultLatitud, lng: DefaultLongitud }; // Metrocentro Managua
+const DefaultLocation = { lat: DEFAULT_LATITUD, lng: DEFAULT_LONGITUD }; // Metrocentro Managua
 const DefaultZoom = 10;
 
 export const MapaPicker = ({ height = '300px' }) => {
@@ -43,7 +43,7 @@ export const MapaPicker = ({ height = '300px' }) => {
 				onChangeLocation={handleChangeLocation}
 				onChangeZoom={handleChangeZoom}
 				zoom={zoom}
-				apiKey={GoogleMapKey}
+				apiKey={GOOGLE_MAP_KEY}
 			/>
 		</>
 	);
