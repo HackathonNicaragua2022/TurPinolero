@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import MapPicker from 'react-google-map-picker';
 import { Alert } from '@mui/material';
-import { SentimentDissatisfiedOutlinedIcon } from '@mui/icons-material';
+import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 import { SwitchMU } from './SwitchMU';
 import { DEFAULT_LOCATION, GOOGLE_MAP_KEY } from '../data';
 
@@ -59,7 +59,7 @@ export const MapaPicker = ({ onMapaPickerChange, height = '300px' }) => {
 					severity="warning"
 					sx={{ py: 14 }}
 				>
-					SIN UBICACIÓN EXACTA EN EL MAPA <SentimentDissatisfiedOutlinedIcon sx={{ ml: 1 }} />
+					SIN UBICACIÓN EXACTA EN EL MAPA <SentimentDissatisfiedIcon sx={{ ml: 1 }} />
 				</Alert>
 			)}
 		</>

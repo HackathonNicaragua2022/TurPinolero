@@ -1,0 +1,26 @@
+{
+	"NombreLocal": "Ron Kon Rola",
+	"Telefonos": "8557-5587 Mov, 8888-8888 Claro",
+	"DeparatamentoId": "MAN",
+	"MunicipioId": "MAN",
+	"Descripcion": "Hola mundo.",
+	"Direccion": "De los semaforos del Seminole 2 cuadras al sur.",
+	"Latitud": 80.1234567891234567,
+	"Longitud": 25.1234567891234567,
+	"ImagenBaner": "banner.JPNG",
+	"Imagenes": [
+		{
+			"Nombre": "https://images.unsplash.com/photo-1665396697251.jpg"
+		},
+		{
+			"Nombre": "https://images.unsplash.com/photo-1665162858084.jpg"
+		}
+	],
+	"Categorias": ["NATA", "ACTI", "NATU", "LAGU"],
+	"RedesSociales": [
+		{
+			"RedSocialId": "FB",
+			"RedSocialURL": "facebook.com/Tiendanube"
+		}
+	]
+}

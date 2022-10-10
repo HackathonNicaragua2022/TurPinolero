@@ -5,6 +5,21 @@ import SendIcon from '@mui/icons-material/Send';
 import { Combo, MapaPicker, TextInput, MultipleSelectChip } from '../components';
 import { Departamentos, Municipios, Categorias } from '../data';
 
+const defaultValues = {
+	Nombre: null,
+	Telefonos: null,
+	DepartamentoId: null,
+	MunicipioId: null,
+	Descripcion: null,
+	Direccion: null,
+	Latitud: null,
+	Longitud: null,
+	ImagenBaner: null,
+	Imagenes: [],
+	Categorias: [],
+	RedesSociales: [],
+};
+
 export const NuevoPage = () => {
 	const [catMunicipios, setCatMunicipios] = useState(Municipios);
 
@@ -13,7 +28,7 @@ export const NuevoPage = () => {
 		formState: { errors },
 		handleSubmit,
 		setValue,
-	} = useForm();
+	} = useForm({ defaultValues });
 
 	const onDepartamentoChange = (DepartamentoId) => {
 		if (DepartamentoId) {
@@ -29,7 +44,7 @@ export const NuevoPage = () => {
 		setValue('Longitud', lng);
 	};
 
-	const onSubmit = (data) => {
+	const onSubmitFormulario = (data) => {
 		console.log(data);
 	};
 
@@ -47,7 +62,7 @@ export const NuevoPage = () => {
 					AGREGAR NUEVO SITIO
 				</Box>
 
-				<form onSubmit={handleSubmit(onSubmit)}>
+				<form onSubmit={handleSubmit(onSubmitFormulario)}>
 					<Grid
 						container
 						spacing={2}
