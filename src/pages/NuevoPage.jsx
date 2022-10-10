@@ -7,7 +7,6 @@ import { Departamentos, Municipios, Categorias } from '../data';
 
 export const NuevoPage = () => {
 	const [catMunicipios, setCatMunicipios] = useState(Municipios);
-	//const [valueMunicipio, setValueMunicipio] = useState('');
 
 	const {
 		register,
@@ -17,13 +16,17 @@ export const NuevoPage = () => {
 	} = useForm();
 
 	const onDepartamentoChange = (DepartamentoId) => {
-		const FiltroMunicipios = Municipios.filter((municipio) => municipio.departamento === DepartamentoId);
-		setCatMunicipios(FiltroMunicipios);
+		if (DepartamentoId) {
+			const FiltroMunicipios = Municipios.filter((municipio) => municipio.departamento === DepartamentoId);
+			setCatMunicipios(FiltroMunicipios);
+		}
+
 		setValue('DepartamentoId', DepartamentoId); // Guardar En UseForm
 	};
 
-	const onCategoriasChange = (categoriasSeleccionadas) => {
-		console.log(categoriasSeleccionadas);
+	const onMapaChage = ({ lat, lng }) => {
+		setValue('Latitud', lat);
+		setValue('Longitud', lng);
 	};
 
 	const onSubmit = (data) => {
@@ -83,6 +86,7 @@ export const NuevoPage = () => {
 								<div className="basis-1/2">
 									<Combo
 										name="Municipios"
+										//defaultValue="0106"
 										data={catMunicipios}
 										onComboChange={(value) => setValue('MunicipioId', value)}
 									/>
@@ -130,7 +134,9 @@ export const NuevoPage = () => {
 						<Grid
 							item
 							xs={8}
-						></Grid>
+						>
+							<MapaPicker onMapaPickerChange={(value) => onMapaChage(value)} />
+						</Grid>
 					</Grid>
 				</form>
 			</Container>

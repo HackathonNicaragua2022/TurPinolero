@@ -3,3 +3,4 @@ export * from './MapaPicker';
 export * from './MultipleSelectChip';
 export * from './SearchButton';
 export * from './TextInput';
+export * from './SwitchMU';

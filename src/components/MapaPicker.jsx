@@ -1,50 +1,67 @@
 import { useState } from 'react';
 import MapPicker from 'react-google-map-picker';
-import { DEFAULT_LATITUD, DEFAULT_LONGITUD, GOOGLE_MAP_KEY } from '../data';
+import { Alert } from '@mui/material';
+import { SentimentDissatisfiedOutlinedIcon } from '@mui/icons-material';
+import { SwitchMU } from './SwitchMU';
+import { DEFAULT_LOCATION, GOOGLE_MAP_KEY } from '../data';
 
-const DefaultLocation = { lat: DEFAULT_LATITUD, lng: DEFAULT_LONGITUD }; // Metrocentro Managua
-const DefaultZoom = 10;
+const defaultLocation = DEFAULT_LOCATION;
+const DefaultZoom = 8;
+const LABEL_SIN_UBICACION = 'SIN UBICACIÓN EN MAPA';
+const LABEL_UBICACION = 'UBICACIÓN EN MAPA';
 
-export const MapaPicker = ({ height = '300px' }) => {
-	const [defaultLocation, setDefaultLocation] = useState(DefaultLocation);
-
+export const MapaPicker = ({ onMapaPickerChange, height = '300px' }) => {
 	const [location, setLocation] = useState(defaultLocation);
 	const [zoom, setZoom] = useState(DefaultZoom);
+	const [showMap, setShowMap] = useState(true);
+	const [labelSwitch, setLabelSwitch] = useState(LABEL_UBICACION);
 
-	function handleChangeLocation(lat, lng) {
+	const handleChangeLocation = (lat, lng) => {
 		setLocation({ lat: lat, lng: lng });
-		console.log({ lat, lng });
-	}
+		onMapaPickerChange({ lat, lng });
+	};
 
-	function handleChangeZoom(newZoom) {
-		console.log(`Zoom: ${newZoom}`);
+	const handleChangeZoom = (newZoom) => {
+		//console.log(`Zoom: ${newZoom}`);
 		setZoom(newZoom);
-	}
+	};
 
 	//   function handleResetLocation() {
 	//     setDefaultLocation({ ...DefaultLocation });
 	//     setZoom(DefaultZoom);
 	//   }
 
+	const switchChanged = (value) => {
+		value ? setLabelSwitch(LABEL_UBICACION) : setLabelSwitch(LABEL_SIN_UBICACION);
+		setShowMap(value);
+	};
+
 	return (
 		<>
-			{/* <button onClick={handleResetLocation}>Reset Location</button>
-      <label>Latitute:</label>
-      <input type="text" value={location.lat} disabled />
-      <label>Longitute:</label>
-      <input type="text" value={location.lng} disabled />
-      <label>Zoom:</label>
-      <input type="text" value={zoom} disabled /> */}
-
-			<MapPicker
-				defaultLocation={defaultLocation}
-				mapTypeId="roadmap"
-				style={{ height: height }}
-				onChangeLocation={handleChangeLocation}
-				onChangeZoom={handleChangeZoom}
-				zoom={zoom}
-				apiKey={GOOGLE_MAP_KEY}
+			<SwitchMU
+				label={labelSwitch}
+				onChangeSwitch={(value) => switchChanged(value)}
 			/>
+
+			{showMap ? (
+				<MapPicker
+					defaultLocation={location}
+					mapTypeId="roadmap"
+					style={{ height: height }}
+					onChangeLocation={handleChangeLocation}
+					onChangeZoom={handleChangeZoom}
+					zoom={zoom}
+					apiKey={GOOGLE_MAP_KEY}
+				/>
+			) : (
+				<Alert
+					variant="outlined"
+					severity="warning"
+					sx={{ py: 14 }}
+				>
+					SIN UBICACIÓN EXACTA EN EL MAPA <SentimentDissatisfiedOutlinedIcon sx={{ ml: 1 }} />
+				</Alert>
+			)}
 		</>
 	);
 };
