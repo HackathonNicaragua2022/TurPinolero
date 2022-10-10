@@ -179,3 +179,13 @@ export const Departamentos = [
 	{ id: '85', text: 'RIO SAN JUAN' },
 	{ id: '80', text: 'RIVAS' },
 ];
+
+export const Categorias = [
+	{ id: 1, text: 'Montañas' },
+	{ id: 2, text: 'Lagunas' },
+	{ id: 3, text: 'Cascadas' },
+	{ id: 4, text: 'Playas' },
+	{ id: 5, text: 'Historicos' },
+	{ id: 6, text: 'Canopy' },
+	{ id: 7, text: 'Senderismo' },
+];

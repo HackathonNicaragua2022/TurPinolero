@@ -14,7 +14,7 @@ export const Combo = ({
 }) => {
 	const [value, setValue] = useState(defaultValue);
 
-	console.log(defaultValue);
+	//console.log(defaultValue);
 
 	const handleChange = ({ target }) => {
 		const selected = target.value;

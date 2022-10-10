@@ -3,9 +3,9 @@ import { useForm } from 'react-hook-form';
 import { Button, Grid, Container, Box } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { Combo, MapaPicker } from '../components';
-import { Departamentos, Municipios } from '../data';
+import { Departamentos, Municipios, Categorias } from '../data';
 import { TextInput } from '../components/TextInput';
-import MultipleSelectChip from '../components/MultipleSelectChip';
+import { MultipleSelectChip } from '../components/MultipleSelectChip';
 
 export const NuevoPage = () => {
 	const [catMunicipios, setCatMunicipios] = useState(Municipios);
@@ -33,7 +33,7 @@ export const NuevoPage = () => {
 
 	return (
 		<>
-			<MultipleSelectChip />
+			<MultipleSelectChip label="Categorías" data={Categorias} />
 
 			<Container
 				fixed

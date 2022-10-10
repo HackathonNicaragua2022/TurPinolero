@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -11,6 +10,16 @@ import Chip from '@mui/material/Chip';
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 
+const SELECTED = {
+	fontWeight: 'bold',
+	backgroundColor: '#D3D3D3',
+};
+
+const NO_SELECTED = {
+	fontWeight: 'normal',
+	backgroundColor: 'white',
+};
+
 const MenuProps = {
 	PaperProps: {
 		style: {
@@ -20,72 +29,65 @@ const MenuProps = {
 	},
 };
 
-const names = [
-	'Oliver Hansen',
-	'Van Henry',
-	'April Tucker',
-	'Ralph Hubbard',
-	'Omar Alexander',
-	'Carlos Abbott',
-	'Miriam Wagner',
-	'Bradley Wilkerson',
-	'Virginia Andrews',
-	'Kelly Snyder',
-];
+//console.log({name, personName});
+const getStyles = (name, personName) => (personName.indexOf(name.id) === -1 ? NO_SELECTED : SELECTED);
 
-function getStyles(name, personName, theme) {
-	return {
-		fontWeight:
-			personName.indexOf(name) === -1 ? theme.typography.fontWeightRegular : theme.typography.fontWeightMedium,
-	};
-}
-
-export default function MultipleSelectChip() {
-	const theme = useTheme();
+export const MultipleSelectChip = ({ label, data }) => {
 	const [personName, setPersonName] = useState([]);
 
 	const handleChange = ({ target }) => {
 		const { value } = target;
-		setPersonName(
-			// On autofill we get a stringified value.
-			typeof value === 'string' ? value.split(',') : value,
-		);
+		setPersonName(typeof value === 'string' ? value.split(',') : value); // On autofill we get a stringified value.
 
-		console.log(value);
+		console.log(personName);
 	};
 
 	return (
 		<div>
-			<FormControl sx={{ m: 1, width: 300 }}>
-				<InputLabel>Chip</InputLabel>
+			<FormControl
+				sx={{ m: 1, width: 300 }}
+				size="small"
+			>
+				<InputLabel>{label}</InputLabel>
 				<Select
 					multiple
 					value={personName}
 					onChange={handleChange}
-					input={<OutlinedInput label="Chip" />}
+					input={<OutlinedInput label={label} />}
 					renderValue={(selected) => (
 						<Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-							{selected.map((value) => (
-								<Chip
-									key={value}
-									label={value}
-								/>
-							))}
+							{selected.map((value) => {
+								const label = data.find((item) => item.id === value);
+								//console.log(label);
+								return (
+									<Chip
+										key={label.value}
+										label={label.text}
+										size="small"
+									/>
+								);
+							})}
 						</Box>
 					)}
 					MenuProps={MenuProps}
+					size="small"
 				>
-					{names.map((name) => (
-						<MenuItem
-							key={name}
-							value={name}
-							style={getStyles(name, personName, theme)}
-						>
-							{name}
-						</MenuItem>
-					))}
+					{data.map((item) => {
+						//console.log(item);
+
+						return (
+							<MenuItem
+								key={item.id}
+								value={item.id}
+								style={getStyles(item, personName)}
+								size="small"
+							>
+								{item.text}
+							</MenuItem>
+						);
+					})}
 				</Select>
 			</FormControl>
 		</div>
 	);
-}
+};
