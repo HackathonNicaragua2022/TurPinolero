@@ -1,14 +1,11 @@
 import { useState } from 'react';
-import Box from '@mui/material/Box';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
+import { Box, OutlinedInput, InputLabel, MenuItem, FormControl, Chip } from '@mui/material';
 import Select from '@mui/material/Select';
-import Chip from '@mui/material/Chip';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
+
+const inputTextSlytes = { width: '95%', backgroundColor: 'white' };
 
 const SELECTED = {
 	fontWeight: 'bold',
@@ -29,30 +26,31 @@ const MenuProps = {
 	},
 };
 
-//console.log({name, personName});
-const getStyles = (name, personName) => (personName.indexOf(name.id) === -1 ? NO_SELECTED : SELECTED);
+//console.log({name, itemArray});
+const getStyles = (name, itemArray) => (itemArray.indexOf(name.id) === -1 ? NO_SELECTED : SELECTED);
 
-export const MultipleSelectChip = ({ label, data }) => {
-	const [personName, setPersonName] = useState([]);
+export const MultipleSelectChip = ({ label, data, defaultStyle = inputTextSlytes }) => {
+	const [itemArray, setItemArray] = useState([]);
 
 	const handleChange = ({ target }) => {
 		const { value } = target;
-		setPersonName(typeof value === 'string' ? value.split(',') : value); // On autofill we get a stringified value.
+		setItemArray(typeof value === 'string' ? value.split(',') : value); // On autofill we get a stringified value.
 
-		console.log(personName);
+		//console.log(itemArray);
 	};
 
 	return (
-		<div>
+		<>
 			<FormControl
-				sx={{ m: 1, width: 300 }}
+				sx={{ width: '100%' }}
 				size="small"
 			>
 				<InputLabel>{label}</InputLabel>
 				<Select
 					multiple
-					value={personName}
+					value={itemArray}
 					onChange={handleChange}
+					style={defaultStyle}
 					input={<OutlinedInput label={label} />}
 					renderValue={(selected) => (
 						<Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
@@ -61,7 +59,7 @@ export const MultipleSelectChip = ({ label, data }) => {
 								//console.log(label);
 								return (
 									<Chip
-										key={label.value}
+										key={label.text} // Tiene que ser igual que label porque daría un warning
 										label={label.text}
 										size="small"
 									/>
@@ -72,22 +70,18 @@ export const MultipleSelectChip = ({ label, data }) => {
 					MenuProps={MenuProps}
 					size="small"
 				>
-					{data.map((item) => {
-						//console.log(item);
-
-						return (
-							<MenuItem
-								key={item.id}
-								value={item.id}
-								style={getStyles(item, personName)}
-								size="small"
-							>
-								{item.text}
-							</MenuItem>
-						);
-					})}
+					{data.map((item) => (
+						<MenuItem
+							key={item.id}
+							value={item.id}
+							style={getStyles(item, itemArray)}
+							size="small"
+						>
+							{item.text}
+						</MenuItem>
+					))}
 				</Select>
 			</FormControl>
-		</div>
+		</>
 	);
 };

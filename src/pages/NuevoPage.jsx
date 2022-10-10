@@ -33,8 +33,6 @@ export const NuevoPage = () => {
 
 	return (
 		<>
-			<MultipleSelectChip label="Categorías" data={Categorias} />
-
 			<Container
 				fixed
 				style={{ backgroundColor: '#CFF5EE' }}
@@ -109,6 +107,26 @@ export const NuevoPage = () => {
 									/>
 								</div>
 							</div>
+							<br />
+							<div className="flex flex-row">
+								<MultipleSelectChip
+									label="Categorías"
+									data={Categorias}
+								/>
+							</div>
+							<br />
+							<div className="flex flex-row">
+								<div className="basis-1/2">
+									<Button
+										type="submit"
+										variant="contained"
+										endIcon={<SendIcon />}
+									>
+										ENVIAR INFORMACIÓN
+									</Button>
+								</div>
+								<div className="basis-1/2"></div>
+							</div>
 						</Grid>
 						<Grid
 							item
@@ -116,14 +134,6 @@ export const NuevoPage = () => {
 						>
 							{/* <MapaPicker /> */}
 						</Grid>
-
-						<Button
-							type="submit"
-							variant="contained"
-							endIcon={<SendIcon />}
-						>
-							ENVIAR INFORMACIÓN
-						</Button>
 					</Grid>
 				</form>
 			</Container>
