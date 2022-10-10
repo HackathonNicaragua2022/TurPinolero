@@ -4,7 +4,7 @@ import Select from '@mui/material/Select';
 
 export const Combo = ({
 	name,
-	data,
+	data = [{ id: 'ND', text: 'NO DATA' }],
 	onComboChange,
 	defaultValue = '',
 	required = false,

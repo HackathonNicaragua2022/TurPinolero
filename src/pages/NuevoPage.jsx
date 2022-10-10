@@ -19,7 +19,7 @@ export const NuevoPage = () => {
 	const onDepartamentoChange = (DepartamentoId) => {
 		const FiltroMunicipios = Municipios.filter((municipio) => municipio.departamento === DepartamentoId);
 		setCatMunicipios(FiltroMunicipios);
-		setValue('DepartamentoId', DepartamentoId); // En UseForm
+		setValue('DepartamentoId', DepartamentoId); // Guardar En UseForm
 	};
 
 	const onCategoriasChange = (categoriasSeleccionadas) => {
