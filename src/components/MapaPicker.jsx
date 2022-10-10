@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import MapPicker from 'react-google-map-picker';
-import { GoogleMapKey } from '../data';
+import { DefaultLatitud, DefaultLongitud, GoogleMapKey } from '../data';
 
-const DefaultLocation = { lat: 12.12805, lng: -86.26499 }; // Metrocentro Managua
+const DefaultLocation = { lat: DefaultLatitud, lng: DefaultLongitud }; // Metrocentro Managua
 const DefaultZoom = 10;
 
-export const MapaPicker = () => {
+export const MapaPicker = ({ height = '300px' }) => {
 	const [defaultLocation, setDefaultLocation] = useState(DefaultLocation);
 
 	const [location, setLocation] = useState(defaultLocation);
@@ -39,7 +39,7 @@ export const MapaPicker = () => {
 			<MapPicker
 				defaultLocation={defaultLocation}
 				mapTypeId="roadmap"
-				//style={{ height: "700px" }}
+				style={{ height: height }}
 				onChangeLocation={handleChangeLocation}
 				onChangeZoom={handleChangeZoom}
 				zoom={zoom}

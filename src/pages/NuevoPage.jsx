@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button, Grid, TextField, Container, Box } from '@mui/material';
+import { Button, Grid, Container, Box } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { Combo, MapaPicker } from '../components';
 import { Departamentos, Municipios } from '../data';
+import { TextInput } from '../components/TextInput';
 
 export const NuevoPage = () => {
 	const [catMunicipios, setCatMunicipios] = useState(Municipios);
-	const [valueMunicipio, setValueMunicipio] = useState('');
+	//const [valueMunicipio, setValueMunicipio] = useState('');
 
 	const {
 		register,
@@ -24,7 +25,7 @@ export const NuevoPage = () => {
 		const FiltroMunicipios = Municipios.filter((municipio) => municipio.departamento === DepartamentoId);
 
 		setCatMunicipios(FiltroMunicipios);
-		setValueMunicipio('');
+		//setValueMunicipio('');
 
 		setValue('Departamento', DepartamentoId); // En UseForm
 	};
@@ -33,8 +34,8 @@ export const NuevoPage = () => {
 		<>
 			<Container
 				fixed
-				style={{ backgroundColor: '' }}
-				sx={{ mt: 5 }}
+				style={{ backgroundColor: '#CFF5EE' }}
+				sx={{ mt: 5, borderRadius: '16px' }}
 			>
 				<Box
 					textAlign="center"
@@ -46,75 +47,72 @@ export const NuevoPage = () => {
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<Grid
 						container
-						spacing={1}
+						spacing={2}
+						columns={16}
 					>
 						<Grid
 							item
-							xs={4}
+							xs={8}
 						>
-							<TextField
-								label="Nombre Sitio/Comercio"
-								type="text"
-								size="small"
-								{...register('nombre', {
-									required: true,
-								})}
-								required={true}
-							/>
-						</Grid>
-						<Grid
-							item
-							xs={4}
-						>
-							<Combo
-								name="Departamentos"
-								data={Departamentos}
-								newChange={(value) => cambiaDepartamento(value)}
-							/>
-						</Grid>
-						<Grid
-							item
-							xs={4}
-						>
-							<Combo
-								name="Municipios"
-								value={valueMunicipio}
-								data={catMunicipios}
-								newChange={(value) => setValue('Municipio', value)}
-							/>
+							<div className="flex flex-row">
+								<div className="basis-1/2">
+									<TextInput
+										label="Nombre Sitio/Comercio"
+										register={register('nombre', {
+											required: true,
+										})}
+										required={true}
+									/>
+								</div>
+								<div className="basis-1/2">
+									<TextInput
+										label="Teléfonos"
+										register={register('telefono')}
+									/>
+								</div>
+							</div>
+							<br />
+							<div className="flex flex-row">
+								<div className="basis-1/2">
+									<Combo
+										name="Departamentos"
+										data={Departamentos}
+										newChange={(value) => cambiaDepartamento(value)}
+									/>
+								</div>
+								<div className="basis-1/2">
+									<Combo
+										name="Municipios"
+										//defaultValue={valueMunicipio}
+										data={catMunicipios}
+										newChange={(value) => setValue('Municipio', value)}
+									/>
+								</div>
+							</div>
+							<br />
+							<div className="flex flex-row">
+								<div className="basis-1/2">
+									<TextInput
+										label="Descripción del Sitio/Comercio"
+										register={register('descripcion')}
+										rows={4}
+									/>
+								</div>
+								<div className="basis-1/2">
+									<TextInput
+										label="Dirección"
+										register={register('direccion')}
+										rows={4}
+									/>
+								</div>
+							</div>
 						</Grid>
 						<Grid
 							item
 							xs={8}
 						>
-							xs=8
+							<MapaPicker />
 						</Grid>
-					</Grid>
-
-					<div className="container mx-auto mt-2">
-						<TextField
-							label="Descripción"
-							type="text"
-							size="small"
-							multiline
-							rows={4}
-							{...register('descripcion')}
-						/>
-
-						<TextField
-							label="Teléfono"
-							type="text"
-							size="small"
-							{...register('telefono')}
-						/>
-						<TextField
-							label="Dirección"
-							type="text"
-							size="small"
-							multiline
-							rows={4}
-							{...register('direccion')}
-						/>
 
 						<Button
 							type="submit"
@@ -123,9 +121,7 @@ export const NuevoPage = () => {
 						>
 							ENVIAR INFORMACIÓN
 						</Button>
-
-						<div style={{ height: '100vh', width: '100%' }}>{/* <MapaPicker /> */}</div>
-					</div>
+					</Grid>
 				</form>
 			</Container>
 		</>

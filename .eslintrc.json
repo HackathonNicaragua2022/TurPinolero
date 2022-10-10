@@ -15,7 +15,8 @@
   "rules": {
     "no-unused-vars": "warn",
     "no-undef": "off",
-		"no-extra-boolean-cast": "off"
+		"no-extra-boolean-cast": "off",
+    "react/prop-types": 0
   },
   "settings": {
     "react": {
