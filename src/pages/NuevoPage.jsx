@@ -2,10 +2,8 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, Grid, Container, Box } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import { Combo, MapaPicker } from '../components';
+import { Combo, MapaPicker, TextInput, MultipleSelectChip } from '../components';
 import { Departamentos, Municipios, Categorias } from '../data';
-import { TextInput } from '../components/TextInput';
-import { MultipleSelectChip } from '../components/MultipleSelectChip';
 
 export const NuevoPage = () => {
 	const [catMunicipios, setCatMunicipios] = useState(Municipios);
@@ -18,17 +16,18 @@ export const NuevoPage = () => {
 		setValue,
 	} = useForm();
 
-	const onSubmit = (data) => {
-		console.log(data);
+	const onDepartamentoChange = (DepartamentoId) => {
+		const FiltroMunicipios = Municipios.filter((municipio) => municipio.departamento === DepartamentoId);
+		setCatMunicipios(FiltroMunicipios);
+		setValue('DepartamentoId', DepartamentoId); // En UseForm
 	};
 
-	const cambiaDepartamento = (DepartamentoId) => {
-		const FiltroMunicipios = Municipios.filter((municipio) => municipio.departamento === DepartamentoId);
+	const onCategoriasChange = (categoriasSeleccionadas) => {
+		console.log(categoriasSeleccionadas);
+	};
 
-		setCatMunicipios(FiltroMunicipios);
-		//setValueMunicipio('');
-
-		setValue('Departamento', DepartamentoId); // En UseForm
+	const onSubmit = (data) => {
+		console.log(data);
 	};
 
 	return (
@@ -59,7 +58,7 @@ export const NuevoPage = () => {
 								<div className="basis-1/2">
 									<TextInput
 										label="Nombre Sitio/Comercio"
-										register={register('nombre', {
+										register={register('Nombre', {
 											required: true,
 										})}
 										required={true}
@@ -68,7 +67,7 @@ export const NuevoPage = () => {
 								<div className="basis-1/2">
 									<TextInput
 										label="Teléfonos"
-										register={register('telefono')}
+										register={register('Telefonos')}
 									/>
 								</div>
 							</div>
@@ -78,15 +77,14 @@ export const NuevoPage = () => {
 									<Combo
 										name="Departamentos"
 										data={Departamentos}
-										newChange={(value) => cambiaDepartamento(value)}
+										onComboChange={(value) => onDepartamentoChange(value)}
 									/>
 								</div>
 								<div className="basis-1/2">
 									<Combo
 										name="Municipios"
-										//defaultValue={valueMunicipio}
 										data={catMunicipios}
-										newChange={(value) => setValue('Municipio', value)}
+										onComboChange={(value) => setValue('MunicipioId', value)}
 									/>
 								</div>
 							</div>
@@ -95,14 +93,14 @@ export const NuevoPage = () => {
 								<div className="basis-1/2">
 									<TextInput
 										label="Descripción del Sitio/Comercio"
-										register={register('descripcion')}
+										register={register('Descripcion')}
 										rows={4}
 									/>
 								</div>
 								<div className="basis-1/2">
 									<TextInput
 										label="Dirección"
-										register={register('direccion')}
+										register={register('Direccion')}
 										rows={4}
 									/>
 								</div>
@@ -112,6 +110,7 @@ export const NuevoPage = () => {
 								<MultipleSelectChip
 									label="Categorías"
 									data={Categorias}
+									onMultiselectChange={(value) => setValue('Categorias', value)}
 								/>
 							</div>
 							<br />
@@ -131,9 +130,7 @@ export const NuevoPage = () => {
 						<Grid
 							item
 							xs={8}
-						>
-							{/* <MapaPicker /> */}
-						</Grid>
+						></Grid>
 					</Grid>
 				</form>
 			</Container>

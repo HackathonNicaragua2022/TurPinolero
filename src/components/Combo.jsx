@@ -1,12 +1,11 @@
-/* eslint-disable react/prop-types */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FormControl, InputLabel, MenuItem } from '@mui/material';
 import Select from '@mui/material/Select';
 
 export const Combo = ({
 	name,
 	data,
-	newChange,
+	onComboChange,
 	defaultValue = '',
 	required = false,
 	width = '90%',
@@ -14,12 +13,14 @@ export const Combo = ({
 }) => {
 	const [value, setValue] = useState(defaultValue);
 
-	//console.log(defaultValue);
+	useEffect(() => {
+		setValue('');
+	}, [data]);
 
 	const handleChange = ({ target }) => {
 		const selected = target.value;
 		setValue(selected);
-		newChange(selected);
+		onComboChange(selected);
 	};
 
 	return (
@@ -37,7 +38,7 @@ export const Combo = ({
 			>
 				{data.map((item) => (
 					<MenuItem
-						key={item.id + item.text}
+						key={item.id + item.text} // Puede darse el caso.
 						value={item.id}
 					>
 						{item.text}

@@ -29,14 +29,17 @@ const MenuProps = {
 //console.log({name, itemArray});
 const getStyles = (name, itemArray) => (itemArray.indexOf(name.id) === -1 ? NO_SELECTED : SELECTED);
 
-export const MultipleSelectChip = ({ label, data, defaultStyle = inputTextSlytes }) => {
+export const MultipleSelectChip = ({ label, data, onMultiselectChange, defaultStyle = inputTextSlytes }) => {
 	const [itemArray, setItemArray] = useState([]);
 
 	const handleChange = ({ target }) => {
 		const { value } = target;
-		setItemArray(typeof value === 'string' ? value.split(',') : value); // On autofill we get a stringified value.
 
-		//console.log(itemArray);
+		const valArray = typeof value === 'string' ? value.split(',') : value; // On autofill we get a stringified value.
+
+		setItemArray(valArray);
+
+		onMultiselectChange(valArray);
 	};
 
 	return (
