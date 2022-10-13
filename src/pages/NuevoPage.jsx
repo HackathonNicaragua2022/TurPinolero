@@ -166,7 +166,7 @@ export const NuevoPage = () => {
 					IMAGENES
 				</Box>
 
-        <ListaImagenes />
+				<ListaImagenes />
 			</Container>
 		</>
 	);
