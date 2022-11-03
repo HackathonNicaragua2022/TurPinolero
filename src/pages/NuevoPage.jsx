@@ -44,12 +44,69 @@ export const NuevoPage = () => {
 		setValue('Longitud', lng);
 	};
 
-	const onSubmitFormulario = (data) => {
+	const onSubmit = (data) => {
 		console.log(data);
 	};
 
 	return (
 		<>
+			<form onSubmit={handleSubmit(onSubmit)}>
+				<div className="container mx-auto bg-slate-500 mt-6">
+					<div className="columns-2">
+						<div className="bg-orange-400">
+							<div className="flex flex-row">
+								<div className="basis-1/2 p-2">
+									<TextInput
+										label="Nombre Sitio/Comercio"
+										register={register('Nombre', {
+											required: true,
+										})}
+										required={true}
+									/>
+								</div>
+								<div className="basis-1/2 p-2">
+									<TextInput
+										label="Teléfonos"
+										register={register('Telefonos')}
+									/>
+								</div>
+							</div>
+							<div className="flex flex-row">
+								<div className="basis-1/2 p-2">
+									<Combo
+										name="Departamentos"
+										data={Departamentos}
+										onComboChange={(value) => onDepartamentoChange(value)}
+									/>
+								</div>
+								<div className="basis-1/2 p-2">
+									<Combo
+										name="Municipios"
+										data={catMunicipios}
+										onComboChange={(value) => setValue('MunicipioId', value)}
+									/>
+								</div>
+							</div>
+							<div className="flex flex-row">
+								<div className="basis-1/2 p-2"></div>
+								<div className="basis-1/2 p-2"></div>
+							</div>
+						</div>
+						<div className="bg-green-400">
+							<MapaPicker onMapaPickerChange={(value) => onMapaChage(value)} />
+						</div>
+					</div>
+				</div>
+
+				<button type="submit">ENVIAR</button>
+				
+			</form>
+
+			<br />
+			<br />
+			<br />
+			<br />
+
 			<Container
 				fixed
 				style={{ backgroundColor: '#CFF5EE' }}
@@ -72,39 +129,13 @@ export const NuevoPage = () => {
 						xs={8}
 					>
 						<div className="flex flex-row">
-							<div className="basis-1/2">
-								<TextInput
-									label="Nombre Sitio/Comercio"
-									register={register('Nombre', {
-										required: true,
-									})}
-									required={true}
-								/>
-							</div>
-							<div className="basis-1/2">
-								<TextInput
-									label="Teléfonos"
-									register={register('Telefonos')}
-								/>
-							</div>
+							<div className="basis-1/2"></div>
+							<div className="basis-1/2"></div>
 						</div>
 						<br />
 						<div className="flex flex-row">
-							<div className="basis-1/2">
-								<Combo
-									name="Departamentos"
-									data={Departamentos}
-									onComboChange={(value) => onDepartamentoChange(value)}
-								/>
-							</div>
-							<div className="basis-1/2">
-								<Combo
-									name="Municipios"
-									//defaultValue="0106"
-									data={catMunicipios}
-									onComboChange={(value) => setValue('MunicipioId', value)}
-								/>
-							</div>
+							<div className="basis-1/2"></div>
+							<div className="basis-1/2"></div>
 						</div>
 						<br />
 						<div className="flex flex-row">
@@ -148,9 +179,7 @@ export const NuevoPage = () => {
 					<Grid
 						item
 						xs={8}
-					>
-						{/* <MapaPicker onMapaPickerChange={(value) => onMapaChage(value)} /> */}
-					</Grid>
+					></Grid>
 				</Grid>
 			</Container>
 
@@ -163,7 +192,7 @@ export const NuevoPage = () => {
 					textAlign="center"
 					sx={{ my: 5 }}
 				>
-					IMAGENES
+					<span className="bg-emerald-400 p-1 px-4 rounded-xl text-white ml-3 mt-6 w-28">IMAGENES</span>
 				</Box>
 
 				<ListaImagenes />

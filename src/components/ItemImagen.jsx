@@ -1,9 +1,9 @@
 import { Grid } from '@mui/material';
 
 export const ItemImagen = ({ imagenes }) => {
-	console.log('Se renderiza ItemImagen');
+	//console.log('Se renderiza ItemImagen');
 
-	console.log(imagenes);
+	//console.log(imagenes);
 
 	return (
 		<>

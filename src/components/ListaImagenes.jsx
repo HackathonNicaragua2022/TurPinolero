@@ -33,11 +33,7 @@ export const ListaImagenes = ({ data }) => {
 
 	const onFileInputChange = ({ target }) => {
 		if (target.files === 0) return;
-
 		let file = target.files;
-
-		//console.log(target.files);
-
 		for (let i = 0; i < file.length; i++) {
 			//this.files.push(file[i]);
 			//console.log(file[i].name);
@@ -89,7 +85,7 @@ export const ListaImagenes = ({ data }) => {
 				ref={fileInputRef}
 			/>
 
-			<CircularProgress color="success" />
+			{/* <CircularProgress color="success" /> */}
 
 			<Button
 				type="button"
