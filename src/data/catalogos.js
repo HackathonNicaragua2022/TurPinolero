@@ -190,6 +190,7 @@ export const Categorias = [
 	{ id: 'CULT', text: 'CULTURA' },
 	{ id: 'EDCO', text: 'EDIFICIOS COLONIALES' },
 	{ id: 'EDHI', text: 'EDIFICIOS HISTÓRICOS' },
+	{ id: 'HOTE', text: 'HOTEL' },
 	{ id: 'FORT', text: 'FORTALEZAS' },
 	{ id: 'GALE', text: 'GALERÍAS' },
 	{ id: 'HIST', text: 'HISTORIA' },

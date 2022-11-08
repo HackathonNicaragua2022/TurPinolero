@@ -1,17 +1,19 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button, Grid, Container, Box } from '@mui/material';
+import { Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { Combo, MapaPicker, TextInput, MultipleSelectChip, ListaImagenes } from '../components';
 import { Departamentos, Municipios, Categorias } from '../data';
-import { apiRoot } from '../helpers';
+import { apiRoot, alertSuccess } from '../helpers';
+import { useNavigate } from 'react-router-dom';
 
 const defaultValues = {
-	NombreLocal: null,
-	Telefonos: null,
+	NombreLocal: 'Princess Hotel',
+	Telefonos: '2240-2352, 88170000',
 	DepartamentoId: null,
+	MunicipioId: null,
 	DescripcionLugar: null,
-	Direccion: null,
+	Direccion: 'Plaza las Victorias',
 	Latitud: null,
 	Longitud: null,
 	ImagenBaner: null, // NO VA
@@ -32,7 +34,12 @@ const defaultValues = {
 	],
 };
 
+const MensajeSuccess =
+	'Gracias por contribuir al Turismo Nicaraguense!! Validaremos algunos datos para este sitio y lo agregaremos a nuestros Registros. Gracias!!';
+
 export const NuevoPage = () => {
+	const navigate = useNavigate();
+
 	const [catMunicipios, setCatMunicipios] = useState(Municipios);
 
 	const { register, handleSubmit, setValue } = useForm({ defaultValues });
@@ -53,7 +60,6 @@ export const NuevoPage = () => {
 
 	const onSubmit = async (data) => {
 		//console.log(data);
-
 		let form = data;
 
 		// Agregar las redes sociales
@@ -64,9 +70,12 @@ export const NuevoPage = () => {
 
 		console.log({ form });
 
-		const response = await apiRoot.post('location', form);
+		//const response = await apiRoot.post('location', form);
+		//console.log({response});
 
-		console.log(response);
+		alertSuccess(MensajeSuccess, 'NICAWIKI', () => {
+			navigate(-1); // Página anterior
+		});
 	};
 
 	const onImagenesChange = (data) => setValue('Imagenes', data);
