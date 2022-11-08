@@ -4,6 +4,7 @@ import { Button, Grid, Container, Box } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { Combo, MapaPicker, TextInput, MultipleSelectChip, ListaImagenes } from '../components';
 import { Departamentos, Municipios, Categorias } from '../data';
+import { apiRoot } from '../helpers';
 
 const defaultValues = {
 	NombreLocal: null,
@@ -50,18 +51,22 @@ export const NuevoPage = () => {
 		setValue('Longitud', lng);
 	};
 
-	const onSubmit = (data) => {
+	const onSubmit = async (data) => {
 		//console.log(data);
 
-		let final = data;
+		let form = data;
 
 		// Agregar las redes sociales
-		data.Facebook && final.RedesSociales.push({ RedSocialId: 'FB', RedSocialURL: data.Facebook });
-		data.Twitter && final.RedesSociales.push({ RedSocialId: 'TW', RedSocialURL: data.Twitter });
-		data.Youtube && final.RedesSociales.push({ RedSocialId: 'YT', RedSocialURL: data.Youtube });
-		data.Instagram && final.RedesSociales.push({ RedSocialId: 'IG', RedSocialURL: data.Instagram });
+		data.Facebook && form.RedesSociales.push({ RedSocialId: 'FB', RedSocialURL: data.Facebook });
+		data.Twitter && form.RedesSociales.push({ RedSocialId: 'TW', RedSocialURL: data.Twitter });
+		data.Youtube && form.RedesSociales.push({ RedSocialId: 'YT', RedSocialURL: data.Youtube });
+		data.Instagram && form.RedesSociales.push({ RedSocialId: 'IG', RedSocialURL: data.Instagram });
 
-		console.log(final);
+		console.log({ form });
+
+		const response = await apiRoot.post('location', form);
+
+		console.log(response);
 	};
 
 	const onImagenesChange = (data) => setValue('Imagenes', data);
@@ -107,6 +112,7 @@ export const NuevoPage = () => {
 									<TextInput
 										label="Dirección"
 										register={register('Direccion')}
+										required={true}
 										rows={4}
 									/>
 								</div>
@@ -117,6 +123,7 @@ export const NuevoPage = () => {
 										name="Departamentos"
 										data={Departamentos}
 										onComboChange={(value) => onDepartamentoChange(value)}
+										required={true}
 									/>
 								</div>
 								<div className="basis-1/2 p-2">
@@ -124,6 +131,7 @@ export const NuevoPage = () => {
 										name="Municipios"
 										data={catMunicipios}
 										onComboChange={(value) => setValue('MunicipioId', value)}
+										required={true}
 									/>
 								</div>
 							</div>
@@ -133,6 +141,7 @@ export const NuevoPage = () => {
 										label="Categorías"
 										data={Categorias}
 										onMultiselectChange={(value) => setValue('Categorias', value)}
+										required={true}
 									/>
 								</div>
 							</div>

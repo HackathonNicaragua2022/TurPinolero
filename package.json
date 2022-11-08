@@ -9,7 +9,8 @@
 		"preview": "vite preview",
 		"deploy": "npm run build && aws s3 cp ./dist s3://nicawiki.com --recursive",
 		"lint": "npx eslint ./src/*.*",
-		"format": "npx prettier --write 'src/**/*.{jsx,js}'"
+		"format": "npx prettier --write 'src/**/*.{jsx,js}'",
+		"s3": "aws s3 cp ./dist s3://nicawiki.com --recursive"
 	},
 	"dependencies": {
 		"@emotion/react": "^11.10.4",

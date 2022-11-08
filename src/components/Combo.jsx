@@ -29,7 +29,9 @@ export const Combo = ({
 			size="small"
 			style={{ width: width, backgroundColor: backgroundColor }}
 		>
-			<InputLabel>{name}</InputLabel>
+			<InputLabel>
+				{name} {required && '*'}
+			</InputLabel>
 			<Select
 				value={value}
 				label={name}

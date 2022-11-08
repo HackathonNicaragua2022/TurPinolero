@@ -29,7 +29,7 @@ const MenuProps = {
 //console.log({name, itemArray});
 const getStyles = (name, itemArray) => (itemArray.indexOf(name.id) === -1 ? NO_SELECTED : SELECTED);
 
-export const MultipleSelectChip = ({ label, data, onMultiselectChange, defaultStyle = inputTextSlytes }) => {
+export const MultipleSelectChip = ({ label, data, onMultiselectChange, defaultStyle = inputTextSlytes, required = false }) => {
 	const [itemArray, setItemArray] = useState([]);
 
 	const handleChange = ({ target }) => {
@@ -48,12 +48,15 @@ export const MultipleSelectChip = ({ label, data, onMultiselectChange, defaultSt
 				sx={{ width: '100%' }}
 				size="small"
 			>
-				<InputLabel>{label}</InputLabel>
+				<InputLabel>
+					{label} {required && '*'}
+				</InputLabel>
 				<Select
 					multiple
 					value={itemArray}
 					onChange={handleChange}
 					style={defaultStyle}
+					required={required}
 					input={<OutlinedInput label={label} />}
 					renderValue={(selected) => (
 						<Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
