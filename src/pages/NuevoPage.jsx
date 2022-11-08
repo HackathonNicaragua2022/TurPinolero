@@ -6,29 +6,35 @@ import { Combo, MapaPicker, TextInput, MultipleSelectChip, ListaImagenes } from 
 import { Departamentos, Municipios, Categorias } from '../data';
 
 const defaultValues = {
-	Nombre: null,
+	NombreLocal: null,
 	Telefonos: null,
 	DepartamentoId: null,
-	MunicipioId: null,
-	Descripcion: null,
+	DescripcionLugar: null,
 	Direccion: null,
 	Latitud: null,
 	Longitud: null,
-	ImagenBaner: null,
-	Imagenes: [],
+	ImagenBaner: null, // NO VA
+	Imagenes: [
+		// {
+		// 	Nombre: 'https://images.unsplash.com/photo-1665396697251.jpg',
+		// },
+		// {
+		// 	Nombre: 'https://images.unsplash.com/photo-7896541123325.jpg',
+		// },
+	],
 	Categorias: [],
-	RedesSociales: [],
+	RedesSociales: [
+		// {
+		// 	RedSocialId: 'FB',
+		// 	RedSocialURL: 'Facebook - log in or sign up',
+		// },
+	],
 };
 
 export const NuevoPage = () => {
 	const [catMunicipios, setCatMunicipios] = useState(Municipios);
 
-	const {
-		register,
-		formState: { errors },
-		handleSubmit,
-		setValue,
-	} = useForm({ defaultValues });
+	const { register, handleSubmit, setValue } = useForm({ defaultValues });
 
 	const onDepartamentoChange = (DepartamentoId) => {
 		if (DepartamentoId) {
@@ -45,20 +51,38 @@ export const NuevoPage = () => {
 	};
 
 	const onSubmit = (data) => {
-		console.log(data);
+		//console.log(data);
+
+		let final = data;
+
+		// Agregar las redes sociales
+		data.Facebook && final.RedesSociales.push({ RedSocialId: 'FB', RedSocialURL: data.Facebook });
+		data.Twitter && final.RedesSociales.push({ RedSocialId: 'TW', RedSocialURL: data.Twitter });
+		data.Youtube && final.RedesSociales.push({ RedSocialId: 'YT', RedSocialURL: data.Youtube });
+		data.Instagram && final.RedesSociales.push({ RedSocialId: 'IG', RedSocialURL: data.Instagram });
+
+		console.log(final);
 	};
+
+	const onImagenesChange = (data) => setValue('Imagenes', data);
 
 	return (
 		<>
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<div className="container mx-auto bg-slate-500 mt-6">
+			<form
+				onSubmit={handleSubmit(onSubmit)}
+				className="mt-5"
+			>
+				<div className="container mx-auto mt-6">
+					{/* SECCIÓN DATOS GENERALES */}
+					<div className="text-center bg-cyan-600 rounded text-white py-2 font-mono text-lg mb-5">DATOS GENERALES</div>
 					<div className="columns-2">
-						<div className="bg-orange-400">
+						{/* PRIMERA COLUMNA */}
+						<div>
 							<div className="flex flex-row">
 								<div className="basis-1/2 p-2">
 									<TextInput
 										label="Nombre Sitio/Comercio"
-										register={register('Nombre', {
+										register={register('NombreLocal', {
 											required: true,
 										})}
 										required={true}
@@ -71,7 +95,23 @@ export const NuevoPage = () => {
 									/>
 								</div>
 							</div>
-							<div className="flex flex-row">
+							<div className="flex flex-row mt-4">
+								<div className="basis-1/2 p-2">
+									<TextInput
+										label="Descripción del Sitio/Comercio"
+										register={register('DescripcionLugar')}
+										rows={4}
+									/>
+								</div>
+								<div className="basis-1/2 p-2">
+									<TextInput
+										label="Dirección"
+										register={register('Direccion')}
+										rows={4}
+									/>
+								</div>
+							</div>
+							<div className="flex flex-row mt-4">
 								<div className="basis-1/2 p-2">
 									<Combo
 										name="Departamentos"
@@ -87,116 +127,72 @@ export const NuevoPage = () => {
 									/>
 								</div>
 							</div>
-							<div className="flex flex-row">
-								<div className="basis-1/2 p-2"></div>
-								<div className="basis-1/2 p-2"></div>
+							<div className="flex flex-row mt-4">
+								<div className="p-2 w-full pr-10">
+									<MultipleSelectChip
+										label="Categorías"
+										data={Categorias}
+										onMultiselectChange={(value) => setValue('Categorias', value)}
+									/>
+								</div>
 							</div>
 						</div>
-						<div className="bg-green-400">
+						{/* SEGUNDA COLUMNA */}
+						<div>
 							<MapaPicker onMapaPickerChange={(value) => onMapaChage(value)} />
 						</div>
 					</div>
+
+					{/* SECCIÓN REDES SOCIALES */}
+					<div className="text-center bg-cyan-600 rounded text-white py-2 font-mono text-lg mb-5 mt-6">REDES SOCIALES</div>
+					<div className="columns-2">
+						<div className="flex flex-row">
+							<div className="basis-1/2 p-2">
+								<TextInput
+									label="URL Facebook"
+									register={register('Facebook')}
+								/>
+							</div>
+							<div className="basis-1/2 p-2">
+								<TextInput
+									label="URL Twitter"
+									register={register('Twitter')}
+								/>
+							</div>
+						</div>
+						<div className="flex flex-row">
+							<div className="basis-1/2 p-2">
+								<TextInput
+									label="URL Youtube"
+									register={register('Youtube')}
+								/>
+							</div>
+							<div className="basis-1/2 p-2">
+								<TextInput
+									label="URL Intagram"
+									register={register('Instagram')}
+								/>
+							</div>
+						</div>
+					</div>
+
+					{/* SECCIÓN IMAGENES */}
+					<div className="text-center bg-cyan-600 rounded text-white py-2 font-mono text-lg mb-5 mt-6">IMAGENES</div>
+
+					<ListaImagenes onImagenesChange={onImagenesChange} />
 				</div>
 
-				<button type="submit">ENVIAR</button>
-				
-			</form>
-
-			<br />
-			<br />
-			<br />
-			<br />
-
-			<Container
-				fixed
-				style={{ backgroundColor: '#CFF5EE' }}
-				sx={{ mt: 5, borderRadius: '16px' }}
-			>
-				<Box
-					textAlign="center"
-					sx={{ my: 5 }}
-				>
-					DATOS GENERALES
-				</Box>
-
-				<Grid
-					container
-					spacing={2}
-					columns={16}
-				>
-					<Grid
-						item
-						xs={8}
+				<div className="text-center mt-10 mb-40">
+					<Button
+						type="submit"
+						variant="contained"
+						size="large"
+						endIcon={<SendIcon />}
 					>
-						<div className="flex flex-row">
-							<div className="basis-1/2"></div>
-							<div className="basis-1/2"></div>
-						</div>
-						<br />
-						<div className="flex flex-row">
-							<div className="basis-1/2"></div>
-							<div className="basis-1/2"></div>
-						</div>
-						<br />
-						<div className="flex flex-row">
-							<div className="basis-1/2">
-								<TextInput
-									label="Descripción del Sitio/Comercio"
-									register={register('Descripcion')}
-									rows={4}
-								/>
-							</div>
-							<div className="basis-1/2">
-								<TextInput
-									label="Dirección"
-									register={register('Direccion')}
-									rows={4}
-								/>
-							</div>
-						</div>
-						<br />
-						<div className="flex flex-row">
-							<MultipleSelectChip
-								label="Categorías"
-								data={Categorias}
-								onMultiselectChange={(value) => setValue('Categorias', value)}
-							/>
-						</div>
-						<br />
-						<div className="flex flex-row">
-							<div className="basis-1/2">
-								<Button
-									type="submit"
-									variant="contained"
-									endIcon={<SendIcon />}
-								>
-									ENVIAR INFORMACIÓN
-								</Button>
-							</div>
-							<div className="basis-1/2"></div>
-						</div>
-					</Grid>
-					<Grid
-						item
-						xs={8}
-					></Grid>
-				</Grid>
-			</Container>
-
-			<Container
-				fixed
-				style={{ backgroundColor: '#CFF5EE' }}
-				sx={{ mt: 5, borderRadius: '16px' }}
-			>
-				<Box
-					textAlign="center"
-					sx={{ my: 5 }}
-				>
-					<span className="bg-emerald-400 p-1 px-4 rounded-xl text-white ml-3 mt-6 w-28">IMAGENES</span>
-				</Box>
-
-				<ListaImagenes />
-			</Container>
+						ENVIAR INFORMACIÓN
+					</Button>
+				</div>
+			</form>
 		</>
 	);
 };

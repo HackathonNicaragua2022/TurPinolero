@@ -5,7 +5,7 @@ import Select from '@mui/material/Select';
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 
-const inputTextSlytes = { width: '95%', backgroundColor: 'white' };
+const inputTextSlytes = { width: '100%', backgroundColor: 'white' };
 
 const SELECTED = {
 	fontWeight: 'bold',

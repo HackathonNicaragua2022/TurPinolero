@@ -13,7 +13,7 @@ const LABEL_UBICACION = 'UBICACIÓN EN MAPA';
 export const MapaPicker = ({ onMapaPickerChange, height = '300px' }) => {
 	const [location, setLocation] = useState(defaultLocation);
 	const [zoom, setZoom] = useState(DefaultZoom);
-	const [showMap, setShowMap] = useState(true);
+	const [showMap, setShowMap] = useState(false);
 	const [labelSwitch, setLabelSwitch] = useState(LABEL_UBICACION);
 
 	const handleChangeLocation = (lat, lng) => {
@@ -41,6 +41,7 @@ export const MapaPicker = ({ onMapaPickerChange, height = '300px' }) => {
 			<SwitchMU
 				label={labelSwitch}
 				onChangeSwitch={(value) => switchChanged(value)}
+				estado={showMap}
 			/>
 
 			{showMap ? (

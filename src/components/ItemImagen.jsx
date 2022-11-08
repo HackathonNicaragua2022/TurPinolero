@@ -11,10 +11,10 @@ export const ItemImagen = ({ imagenes }) => {
 				<Grid
 					item
 					xs={1}
-					key={item.img}
+					key={item.Nombre}
 				>
 					<img
-						src={item.img}
+						src={item.Nombre}
 						alt=""
 					/>
 				</Grid>

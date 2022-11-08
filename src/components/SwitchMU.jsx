@@ -1,8 +1,8 @@
 import { FormControlLabel, Switch } from '@mui/material';
 import { useState } from 'react';
 
-export const SwitchMU = ({ label, onChangeSwitch }) => {
-	const [state, setState] = useState(true);
+export const SwitchMU = ({ label, onChangeSwitch, estado = true }) => {
+	const [state, setState] = useState(estado);
 
 	const onChange = () => {
 		const newState = !state;

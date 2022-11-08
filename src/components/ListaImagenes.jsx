@@ -19,7 +19,7 @@ const myBucket = new AWS.S3({
 	region: REGION,
 });
 
-export const ListaImagenes = ({ data }) => {
+export const ListaImagenes = ({ onImagenesChange }) => {
 	const [imagenesArray, setImagenesArray] = useState([
 		/* 		{
 			img: AWS_URL_BUCKET_S3 + '17c0d870-ada4-4333-b5fa-ae43c1f28a97.jpg',
@@ -27,7 +27,7 @@ export const ListaImagenes = ({ data }) => {
 		}, */
 	]);
 
-	const [progress, setProgress] = useState(0);
+	//const [progress, setProgress] = useState(0);
 
 	const fileInputRef = useRef();
 
@@ -60,15 +60,15 @@ export const ListaImagenes = ({ data }) => {
 
 		putObjectPromise
 			.then(function (data) {
-				console.log(data);
-				console.log('Success');
+				//console.log(data);
 
 				const imagen = {
-					img: AWS_URL_BUCKET_S3 + uuid,
-					title: null,
+					Nombre: AWS_URL_BUCKET_S3 + uuid,
+					//title: null,
 				};
 
 				setImagenesArray([...imagenesArray, imagen]);
+				onImagenesChange([...imagenesArray, imagen]); // Enviar al componente padre
 			})
 			.catch(function (err) {
 				console.log(err);
@@ -89,6 +89,7 @@ export const ListaImagenes = ({ data }) => {
 
 			<Button
 				type="button"
+				color="success"
 				variant="contained"
 				startIcon={<FileUploadOutlined />}
 				onClick={() => fileInputRef.current.click()}
