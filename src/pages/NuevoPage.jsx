@@ -4,7 +4,7 @@ import { Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { Combo, MapaPicker, TextInput, MultipleSelectChip, ListaImagenes } from '../components';
 import { Departamentos, Municipios, Categorias } from '../data';
-import { apiRoot, alertSuccess } from '../helpers';
+import { apiRoot, alertSuccess, alertError } from '../helpers';
 import { useNavigate } from 'react-router-dom';
 
 const defaultValues = {
@@ -62,20 +62,32 @@ export const NuevoPage = () => {
 		//console.log(data);
 		let form = data;
 
+		delete form.Facebook;
+		delete form.Twitter;
+		delete form.Youtube;
+		delete form.Instagram;
+
 		// Agregar las redes sociales
 		data.Facebook && form.RedesSociales.push({ RedSocialId: 'FB', RedSocialURL: data.Facebook });
 		data.Twitter && form.RedesSociales.push({ RedSocialId: 'TW', RedSocialURL: data.Twitter });
 		data.Youtube && form.RedesSociales.push({ RedSocialId: 'YT', RedSocialURL: data.Youtube });
 		data.Instagram && form.RedesSociales.push({ RedSocialId: 'IG', RedSocialURL: data.Instagram });
 
-		console.log({ form });
+		console.log(form);
 
-		//const response = await apiRoot.post('location', form);
-		//console.log({response});
-
-		alertSuccess(MensajeSuccess, 'NICAWIKI', () => {
-			navigate(-1); // Página anterior
+		const response = await apiRoot.post('location', form).catch(function (error) {
+			// handle error
+			console.log(error);
+			alertError(error.message);
 		});
+
+		if (response === undefined) {
+			return;
+		}
+
+		console.log({ response });
+
+		alertSuccess(MensajeSuccess, 'NICAWIKI', () => navigate(-1)); // Página anterior
 	};
 
 	const onImagenesChange = (data) => setValue('Imagenes', data);
