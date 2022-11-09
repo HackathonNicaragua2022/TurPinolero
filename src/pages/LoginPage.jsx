@@ -25,11 +25,11 @@ export const LoginPage = () => {
 
 		const { token } = response.data;
 
-		console.log(token);
+		localStorage.setItem('token', token);
 
 		//alertSuccess(MensajeSuccess, 'NICAWIKI', () => navigate(-1)); // Página anterior
 
-		//navigate('/dashboard');
+		navigate('/dashboard');
 	};
 
 	const registro = () => navigate('/register');
