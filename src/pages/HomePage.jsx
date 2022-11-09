@@ -1,5 +1,6 @@
 import { Button } from '@mui/material';
 import { Add as AddIcon } from '@mui/icons-material';
+import LoginIcon from '@mui/icons-material/Login';
 import { SearchButton } from '../components';
 import { useNavigate } from 'react-router-dom';
 import logoTexto from '../img/logoTexto.png';
@@ -8,11 +9,8 @@ import logoImagen from '../img/logoImagen.png';
 export const HomePage = () => {
 	const navigate = useNavigate();
 
-	const btnNuevo = () => {
-		navigate({
-			pathname: 'nuevo',
-		});
-	};
+	const btnNuevo = () => navigate({ pathname: 'nuevo' });
+	const btnLogin = () => navigate({ pathname: 'login' });
 
 	return (
 		<>
@@ -28,15 +26,16 @@ export const HomePage = () => {
 				<div className="p-2">
 					<Button
 						className="animate__animated animate__fadeInRight"
-						startIcon={<AddIcon />}
+						startIcon={<LoginIcon />}
 						size="small"
 						variant="contained"
-						onClick={btnNuevo}
+						onClick={btnLogin}
 					>
-						REGISTRARSE
+						INICIAR SESIÓN
 					</Button>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<Button
-						className="animate__animated animate__fadeInRight ml-8"
+						className="animate__animated animate__fadeInRight"
 						startIcon={<AddIcon />}
 						size="small"
 						variant="contained"

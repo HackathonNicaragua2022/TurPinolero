@@ -75,17 +75,13 @@ export const NuevoPage = () => {
 
 		console.log(form);
 
-		const response = await apiRoot.post('location', form).catch(function (error) {
-			// handle error
-			console.log(error);
-			alertError(error.message);
-		});
+		const response = await apiRoot.post('location', form);
 
-		if (response === undefined) {
+		if (response.codeStatus !== 200) {
+			console.log({ response });
+			alertError(error.message);
 			return;
 		}
-
-		console.log({ response });
 
 		alertSuccess(MensajeSuccess, 'NICAWIKI', () => navigate(-1)); // Página anterior
 	};
@@ -100,7 +96,7 @@ export const NuevoPage = () => {
 			>
 				<div className="container mx-auto mt-6">
 					{/* SECCIÓN DATOS GENERALES */}
-					<div className="text-center bg-cyan-600 rounded text-white py-2 font-mono text-lg mb-5">DATOS GENERALES</div>
+					<div className="text-center bg-cyan-600 rounded text-white py-2 font-mono text-lg mb-5"> DATOS GENERALES</div>
 					<div className="columns-2">
 						{/* PRIMERA COLUMNA */}
 						<div>
