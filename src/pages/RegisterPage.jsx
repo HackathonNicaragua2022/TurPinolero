@@ -16,10 +16,11 @@ export const RegisterPage = () => {
 
 	const onSubmit = async (data) => {
 		console.log(data);
+
 		const response = await apiRoot.post('user', data);
+		console.log({ response });
 
 		if (response.status !== 200) {
-			console.log({ response });
 			alertError(response.message);
 			return;
 		}

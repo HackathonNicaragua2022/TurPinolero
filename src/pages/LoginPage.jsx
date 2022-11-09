@@ -14,19 +14,22 @@ export const LoginPage = () => {
 
 	const onSubmit = async (data) => {
 		console.log(data);
-		const response = await apiRoot.post('user/signIn', data);
 
+		const response = await apiRoot.post('user/signIn', data);
 		console.log(response);
 
-		if (response.codeStatus !== 200) {
-			console.log({ response });
-			alertError(error.message);
+		if (response.status !== 200) {
+			alertError('Ocurrio un error');
 			return;
 		}
 
+		const { token } = response.data;
+
+		console.log(token);
+
 		//alertSuccess(MensajeSuccess, 'NICAWIKI', () => navigate(-1)); // Página anterior
 
-		navigate('/dashboard');
+		//navigate('/dashboard');
 	};
 
 	const registro = () => navigate('/register');
