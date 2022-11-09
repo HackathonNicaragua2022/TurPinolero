@@ -1,19 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { Alert, Button, InputAdornment, TextField } from '@mui/material';
 import { Clear, Search } from '@mui/icons-material';
-import {
-	LocationOnOutlined as LocationIcon,
-	PoolOutlined as PoolIcon,
-	TravelExploreOutlined as TravelIcon,
-} from '@mui/icons-material';
+import { LocationOnOutlined as LocationIcon, PoolOutlined as PoolIcon, TravelExploreOutlined as TravelIcon } from '@mui/icons-material';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 
-const phrases = [
-	'Restaurantes en Managua',
-	'Hoteles en Granada',
-	'Hospedajes en San Juan del Sur',
-	'Reservas Naturales',
-];
+const phrases = ['Restaurantes en Managua', 'Hoteles en Granada', 'Hospedajes en San Juan del Sur', 'Reservas Naturales'];
 
 const ramdomNumber = Math.floor(Math.random() * phrases.length);
 
@@ -104,9 +95,7 @@ export const SearchButton = () => {
 						}}
 					/>
 					<br />
-					<div className="text-center mt-2 text-gray-600">
-						<i className="">Tu Wiki Turística Nicaragüense</i>
-					</div>
+					<div className="text-center mt-2 text-gray-600">{/* <i className="">Tu Wiki Turística Nicaragüense</i> */}</div>
 				</form>
 			</div>
 
