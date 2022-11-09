@@ -1,11 +1,11 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { apiRoot } from '../helpers';
+import { alertError, apiRoot } from '../helpers';
 import logoImagen from '../img/logoImagen.png';
 
 const defaultValues = {
-	Correo: 'ebarquero85@gmail.com',
-	Contrasenia: '123',
+	email: 'ebarquero@gmail.com',
+	password: '123',
 };
 
 export const LoginPage = () => {
@@ -14,12 +14,18 @@ export const LoginPage = () => {
 
 	const onSubmit = async (data) => {
 		console.log(data);
-		// const response = await apiRoot.post('login', data);
-		// if (response.codeStatus !== 200) {
-		// 	console.log({ response });
-		// 	alertError(error.message);
-		// 	return;
-		// }
+		const response = await apiRoot.post('user/signIn', data);
+
+		console.log(response);
+
+		if (response.codeStatus !== 200) {
+			console.log({ response });
+			alertError(error.message);
+			return;
+		}
+
+		//alertSuccess(MensajeSuccess, 'NICAWIKI', () => navigate(-1)); // Página anterior
+
 		navigate('/dashboard');
 	};
 
@@ -40,15 +46,10 @@ export const LoginPage = () => {
 						className="mt-8 space-y-6"
 						onSubmit={handleSubmit(onSubmit)}
 					>
-						<input
-							type="hidden"
-							name="remember"
-							value="true"
-						/>
 						<div className="-space-y-px rounded-md shadow-sm">
 							<div>
 								<input
-									{...register('Correo')}
+									{...register('email')}
 									type="email"
 									required
 									className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
@@ -57,7 +58,7 @@ export const LoginPage = () => {
 							</div>
 							<div>
 								<input
-									{...register('Contrasenia')}
+									{...register('password')}
 									type="password"
 									required
 									className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
