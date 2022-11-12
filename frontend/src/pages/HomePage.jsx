@@ -55,7 +55,9 @@ export const HomePage = () => {
 			</div>
 
 			{/* COMPONENTE BÚSQUEDA */}
-			<SearchButton />
+			<div className="ml-80 mr-80">
+				<SearchButton />
+			</div>
 
 			{/* BOTONES DE FILTRO */}
 			<div className="flex justify-center space-x-8 mt-5">

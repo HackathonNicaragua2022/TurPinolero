@@ -2,14 +2,13 @@ import { useEffect, useRef, useState } from 'react';
 import { Alert, Button, InputAdornment, TextField } from '@mui/material';
 import { Clear, Search } from '@mui/icons-material';
 import { createSearchParams, useNavigate } from 'react-router-dom';
-import { TravelExploreOutlined as TravelIcon } from '@mui/icons-material';
 const phrases = ['Restaurantes en Managua', 'Hoteles en Granada', 'Hospedajes en San Juan del Sur', 'Reservas Naturales'];
 
 const ramdomNumber = Math.floor(Math.random() * phrases.length);
 
-export const SearchButton = () => {
+export const SearchButton = ({ texto = '' }) => {
 	const [errorMessage, setErrorMessage] = useState(false);
-	const [searchText, setSearchText] = useState('');
+	const [searchText, setSearchText] = useState(texto);
 	const [showClearIcon, setShowClearIcon] = useState('none');
 	const fileInputRef = useRef();
 
@@ -53,7 +52,7 @@ export const SearchButton = () => {
 		}
 
 		navigate({
-			pathname: 'resultado',
+			pathname: '/resultado',
 			search: createSearchParams({
 				texto: searchText,
 				ubicacion: '',

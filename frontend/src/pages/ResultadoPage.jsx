@@ -1,24 +1,40 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Typography, Grid } from '@mui/material';
 import queryString from 'query-string';
+import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { SearchButton } from '../components';
 
 export const ResultadoPage = () => {
+	const [texto, setTexto] = useState('');
+
 	const location = useLocation();
 
-	console.log(location);
-
-	//const query = queryString.parse(location.search); // {texto: 'hola mundo ejemplo', tipo: 'Piscina', ubicacion: 'Managua'}
-
-	//console.log(query);
+	useEffect(() => {
+		//console.log({ location });
+		const query = queryString.parse(location.search); // {texto: 'hola mundo ejemplo', tipo: 'Piscina', ubicacion: 'Managua'}
+		setTexto(query.texto);
+	}, []);
 
 	return (
 		<>
-			<div className="ml-20 mr-20 mt-2">
-				<SearchButton />
+			<div className="bg-cyan-100">
+				<div className="ml-20 mr-20 mt-2">
+					<SearchButton texto={texto} />
+				</div>
+
+				<div className="ml-20 mr-20 mt-5">
+					<div className="bg-white border-solid border-2 border-sky-100 rounded drop-shadow-lg ">
+						<img
+							className="my-3 ml-3 rounded-lg relative"
+							src="https://media.tacdn.com/media/attractions-splice-spp-674x446/06/73/49/67.jpg"
+							alt=""
+							width={280}
+						/>
+						<div className="relative">Tree Casa Resort</div>
+					</div>
+				</div>
 			</div>
 
-			<div className="flex flex-row mt-10 justify-center">
+			{/* 			<div className="flex flex-row mt-10 justify-center">
 				<div className="basis-1/3">
 					<Card sx={{ maxWidth: 345 }}>
 						<CardMedia
@@ -145,7 +161,7 @@ export const ResultadoPage = () => {
 						</CardActions>
 					</Card>
 				</div>
-			</div>
+			</div> */}
 		</>
 	);
 };
