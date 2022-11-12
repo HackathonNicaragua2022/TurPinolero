@@ -1,3 +1,4 @@
+import { Button, Rating } from '@mui/material';
 import queryString from 'query-string';
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
@@ -16,20 +17,54 @@ export const ResultadoPage = () => {
 
 	return (
 		<>
-			<div className="bg-cyan-100">
-				<div className="ml-20 mr-20 mt-2">
+			<div className="">
+				<div className="ml-20 mr-20 mt-4">
 					<SearchButton texto={texto} />
 				</div>
 
+				{/* PRINCIPAL RESULTADOS DE BUSQUEDA */}
 				<div className="ml-20 mr-20 mt-5">
-					<div className="bg-white border-solid border-2 border-sky-100 rounded drop-shadow-lg ">
-						<img
-							className="my-3 ml-3 rounded-lg relative"
-							src="https://media.tacdn.com/media/attractions-splice-spp-674x446/06/73/49/67.jpg"
-							alt=""
-							width={280}
-						/>
-						<div className="relative">Tree Casa Resort</div>
+					{/* UN LOCAL */}
+					<div className="bg-white border-solid border-2 rounded-lg drop-shadow-lg flex items-stretch p-2">
+						<div className="relative">
+							<img
+								className="rounded-lg"
+								src="https://media.tacdn.com/media/attractions-splice-spp-674x446/06/73/49/67.jpg"
+								alt=""
+								width={280}
+							/>
+						</div>
+						<div className="w-full ml-4">
+							<div className="grid grid-cols-2 gap-4 place-content-end">
+								<div className=" py-2">
+									<b>Tree Casa Resort</b>
+								</div>
+								<div>otro boton</div>
+							</div>
+							<p className="h-16">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis volutpat facilisis eros porta fermentum. Ut eu sem a sem mattis
+								fermentum nec nec lorem. Nam volutpat libero erat.
+							</p>
+							<div className="grid grid-cols-2 place-content-end">
+								<div className="py-2">
+									<Button
+										variant="contained"
+										color="success"
+										size="small"
+									>
+										VER PERFIL
+									</Button>
+								</div>
+								<div>
+									<Rating
+										className="mt-2"
+										name="half-rating"
+										defaultValue={3.5}
+										precision={0.5}
+									/>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
