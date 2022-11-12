@@ -18,6 +18,8 @@ export const LoginPage = () => {
 		const response = await apiRoot.post('user/signIn', form);
 		const { data } = response;
 
+		//console.log(data);
+
 		if (data.status !== 'Ok') {
 			alertError(data.message);
 			return;

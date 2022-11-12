@@ -64,41 +64,37 @@ export const SearchButton = () => {
 
 	return (
 		<>
-			<div className="flex justify-center sm:px-10 mt-8">
-				<form onSubmit={submitSearch}>
-					<TextField
-						autoComplete="off"
-						ref={fileInputRef}
-						style={{ width: '430px' }}
-						variant="outlined"
-						onChange={handleChange}
-						value={searchText}
-						className="inputRounded animate__animated animate__fadeIn"
-						placeholder=""
-						InputProps={{
-							startAdornment: (
-								<InputAdornment position="start">
-									<Search />
-								</InputAdornment>
-							),
-							endAdornment: (
-								<InputAdornment
-									className="mano"
-									position="end"
-									style={{ display: showClearIcon }}
-									onClick={handleClearButton}
-								>
-									<Clear />
-								</InputAdornment>
-							),
-						}}
-					/>
-					<br />
-					<div className="text-center mt-2 text-gray-600">{/* <i className="">Tu Wiki Turística Nicaragüense</i> */}</div>
-				</form>
-			</div>
+			<form onSubmit={submitSearch}>
+				<TextField
+					autoComplete="off"
+					ref={fileInputRef}
+					style={{ width: '100%' }}
+					variant="outlined"
+					onChange={handleChange}
+					value={searchText}
+					className="inputRounded animate__animated animate__fadeIn"
+					placeholder=""
+					InputProps={{
+						startAdornment: (
+							<InputAdornment position="start">
+								<Search />
+							</InputAdornment>
+						),
+						endAdornment: (
+							<InputAdornment
+								className="mano"
+								position="end"
+								style={{ display: showClearIcon }}
+								onClick={handleClearButton}
+							>
+								<Clear />
+							</InputAdornment>
+						),
+					}}
+				/>
+			</form>
 
-			<div className="flex justify-center sm:px-10 mt-10">
+			{/* 			<div className="flex justify-center sm:px-10 mt-10">
 				<Button
 					variant="contained"
 					color="success"
@@ -107,7 +103,7 @@ export const SearchButton = () => {
 				>
 					BUSCAR
 				</Button>
-			</div>
+			</div> */}
 
 			{errorMessage && (
 				<div className="flex justify-center sm:px-10 mt-10">

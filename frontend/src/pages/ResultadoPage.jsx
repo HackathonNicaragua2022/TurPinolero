@@ -1,6 +1,7 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Typography, Grid } from '@mui/material';
 import queryString from 'query-string';
 import { useLocation, useParams } from 'react-router-dom';
+import { SearchButton } from '../components';
 
 export const ResultadoPage = () => {
 	const location = useLocation();
@@ -13,9 +14,8 @@ export const ResultadoPage = () => {
 
 	return (
 		<>
-
-			<div className="bg-cyan-600">
-				aaa
+			<div className="ml-20 mr-20 mt-2">
+				<SearchButton />
 			</div>
 
 			<div className="flex flex-row mt-10 justify-center">
@@ -39,8 +39,8 @@ export const ResultadoPage = () => {
 								variant="body2"
 								color="text.secondary"
 							>
-								Baje una tirolesa a través de un bosque nuboso durante este recorrido de 5 horas desde Managua. Visite
-								el Volcán Mombacho de 4,410 pies (1,344 metros)
+								Baje una tirolesa a través de un bosque nuboso durante este recorrido de 5 horas desde Managua. Visite el Volcán Mombacho de 4,410
+								pies (1,344 metros)
 							</Typography>
 						</CardContent>
 						<CardActions>
@@ -81,8 +81,8 @@ export const ResultadoPage = () => {
 								variant="body2"
 								color="text.secondary"
 							>
-								Rodeada por dos cerros de mediana elevación, la Bahía de San Juan del Sur alberga la ciudad playera más
-								visitada por surfistas. Su casco urbano ofrece una completa y variada oferta turística,
+								Rodeada por dos cerros de mediana elevación, la Bahía de San Juan del Sur alberga la ciudad playera más visitada por surfistas. Su
+								casco urbano ofrece una completa y variada oferta turística,
 							</Typography>
 						</CardContent>
 						<CardActions>
@@ -123,8 +123,8 @@ export const ResultadoPage = () => {
 								variant="body2"
 								color="text.secondary"
 							>
-								Cabañas Lobolira es un residencial íntimo de 8 diferentes cabañas rústicas y apartamentos a solo 5
-								minutos a pie de la zona de restaurantes del centro de San Juan.
+								Cabañas Lobolira es un residencial íntimo de 8 diferentes cabañas rústicas y apartamentos a solo 5 minutos a pie de la zona de
+								restaurantes del centro de San Juan.
 							</Typography>
 						</CardContent>
 						<CardActions>
