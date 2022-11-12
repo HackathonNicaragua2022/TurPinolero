@@ -1,0 +1,223 @@
+[
+  {
+    "_id": "1d484682-7840-48e8-898e-132cf71445cb",
+    "colId": "5834e060-aef8-4806-a88d-96b724a48766",
+    "containerId": "",
+    "name": "insert review",
+    "url": "localhost:3005/api/location/52/review",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2022-11-03T03:19:11.620Z",
+    "modified": "2022-11-03T06:27:23.855Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"Calificacion\":2,\n  \"Resena\":\"el lugar fue muy bueno\",\n  \"UsuarioNombre\":\"fernando castro\",\n  \"UsuarioCorreo\":\"jf3r123@gmail.com\",\n  \"promedio\": \"100\",\n  \"cantidadResenia\":\"2550\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "b06f4e35-a4ae-4659-bdfa-0851417b538a",
+    "colId": "cbeee867-ab30-42c8-b5a5-058995e2f00f",
+    "containerId": "",
+    "name": "update location",
+    "url": "https://search-wikipinolero-gn35i744q5j2hxls3lemdu7mfa.us-east-1.es.amazonaws.com/locations/_update/52",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2022-11-03T04:07:17.041Z",
+    "modified": "2022-11-03T04:22:33.335Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"doc\":\n  {\n    \"promedio\": 5,\n    \"cantidadResenia\":10\n  }\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "basic",
+      "basic": {
+        "username": "admin",
+        "password": "HseTep&7wL4"
+      }
+    },
+    "tests": []
+  },
+  {
+    "_id": "e8ecd16a-cc51-4170-861c-f96b3e87ff0b",
+    "colId": "cbeee867-ab30-42c8-b5a5-058995e2f00f",
+    "containerId": "",
+    "name": "get all locations",
+    "url": "https://search-wikipinolero-gn35i744q5j2hxls3lemdu7mfa.us-east-1.es.amazonaws.com/locations/_search",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2022-11-03T04:14:50.547Z",
+    "modified": "2022-11-03T04:15:21.858Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "basic",
+      "basic": {
+        "username": "admin",
+        "password": "HseTep&7wL4"
+      }
+    },
+    "tests": []
+  },
+  {
+    "_id": "3fdf9615-1d9b-418f-98ec-c79506b64dc4",
+    "colId": "5834e060-aef8-4806-a88d-96b724a48766",
+    "containerId": "",
+    "name": "get locations list",
+    "url": "localhost:3005/api/location/list",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2022-11-03T06:23:59.090Z",
+    "modified": "2022-11-03T06:26:48.549Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"departamento\":\"\",\n  \"municipio\":\"\",\n  \"keywords\":\"parque\",\n  \"tags\":\"\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "634a0303-4b52-48e4-89e2-0ba9d683cb66",
+    "colId": "5834e060-aef8-4806-a88d-96b724a48766",
+    "containerId": "",
+    "name": "get location by id",
+    "url": "localhost:3005/api/location/52",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2022-11-03T06:33:34.841Z",
+    "modified": "2022-11-03T06:34:04.837Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "d1e51a96-954e-4cd2-a0c9-bbc863fe2e7b",
+    "colId": "0a4970c8-be66-4389-80d2-649509754c65",
+    "containerId": "",
+    "name": "get locations list",
+    "url": "https://nicawiki.herokuapp.com/api/location/list",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2022-11-03T06:48:14.926Z",
+    "modified": "2022-11-03T06:49:36.306Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"departamento\":\"\",\n  \"municipio\":\"\",\n  \"keywords\":\"parque\",\n  \"tags\":\"\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "a6ac539a-e8bc-40d2-a321-4fbd57fb5970",
+    "colId": "5834e060-aef8-4806-a88d-96b724a48766",
+    "containerId": "",
+    "name": "insert location",
+    "url": "localhost:3005/api/location",
+    "method": "POST",
+    "sortNum": 40000,
+    "created": "2022-11-03T20:11:35.667Z",
+    "modified": "2022-11-09T04:27:36.887Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n\t\"NombreLocal\": \"test location\",\n\t\"Telefonos\": \"8888-8888 MOV, 8989-8989 Claro\",\n\t\"DepartamentoId\": \"MAN\",\n\t\"MunicipioId\":\"MAN\",\n\t\"DescripcionLugar\": \"testing insert location\",\n\t\"Direccion\": \"del seminole 1 y media cuadra oeste\",\n\t\"Latitud\": \"80.1235214524551115\",\n\t\"Longitud\": \"25.1254789554231041\",\n\t\"ImagenBaner\": null,\n\t\"Imagenes\": [{\n\t\t\t\"Nombre\": \"https://images.unsplash.com/photo-1665396697251.jpg\"\n\t\t},\n\t\t{\n\t\t\t\"Nombre\": \"https://images.unsplash.com/photo-7896541123325.jpg\"\n\t\t}\n\t],\n\t  \"Categorias\":[\"NATA\",\"ACTI\",\"NATU\",\"LAGU\"],\n\t\t\"RedesSociales\":[\n\t\t  { \"RedSocialId\":\"FB\", \"RedSocialURL\":\"facebook.com/\"}\n\t\t]\n\t  \n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7IkNvcnJlbyI6ImpmM3IxMjNAZ21haWwuY29tIiwiQ29udHJhc2VuaWEiOiIxMjMiLCJmZWNoYSI6MTY2Nzk2Nzk5Mjk0N30sImlhdCI6MTY2Nzk2Nzk5Mn0.A62jaJ-VzGU1e7McnQjw97YOvfGicQz4a_y1_Mvp2qc"
+    },
+    "tests": []
+  },
+  {
+    "_id": "dfc1a80e-2024-4778-b167-0d4092810b83",
+    "colId": "5834e060-aef8-4806-a88d-96b724a48766",
+    "containerId": "",
+    "name": "insert user",
+    "url": "localhost:3005/api/user",
+    "method": "POST",
+    "sortNum": 50000,
+    "created": "2022-11-08T17:20:35.068Z",
+    "modified": "2022-11-08T19:47:45.130Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"Correo\":\"jf3r123@gmail.com\",\n  \"Nombres\":\"Fernando Osmar\",\n  \"Apellidos\":\"Castro Martínez\",\n  \"Contrasenia\":\"123\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "a3af53cc-13bd-4734-8f42-9a7895ec1e06",
+    "colId": "5834e060-aef8-4806-a88d-96b724a48766",
+    "containerId": "",
+    "name": "sign In",
+    "url": "localhost:3005/api/user/signIn",
+    "method": "POST",
+    "sortNum": 60000,
+    "created": "2022-11-08T19:55:44.194Z",
+    "modified": "2022-11-11T23:30:48.752Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\":\"jf3r123sdfsdfsdfs@gmail.com\",\n  \"password\":\"123\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "119d9380-8f23-4a25-96d7-c400eb206a69",
+    "colId": "5834e060-aef8-4806-a88d-96b724a48766",
+    "containerId": "",
+    "name": "reset password",
+    "url": "localhost:3005/api/user/resetPassword",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2022-11-09T05:08:20.432Z",
+    "modified": "2022-11-09T05:10:27.579Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"password\":\"123\",\n  \"newPassword\":\"111\"\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7IkNvcnJlbyI6ImpmM3IxMjNAZ21haWwuY29tIiwiQ29udHJhc2VuaWEiOiIxMjMiLCJmZWNoYSI6MTY2Nzk2Nzk5Mjk0N30sImlhdCI6MTY2Nzk2Nzk5Mn0.A62jaJ-VzGU1e7McnQjw97YOvfGicQz4a_y1_Mvp2qc"
+    },
+    "tests": []
+  },
+  {
+    "_id": "d15b06d8-a19b-4c35-9ca4-98cf72cb963b",
+    "colId": "0a4970c8-be66-4389-80d2-649509754c65",
+    "containerId": "",
+    "name": "signIn",
+    "url": "https://nicawiki.herokuapp.com/api/user/signIn",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2022-11-11T23:31:05.516Z",
+    "modified": "2022-11-12T00:13:22.401Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\":\"jf3r123@gmail.com\",\n  \"password\":\"123\"\n}",
+      "form": []
+    },
+    "tests": []
+  }
+]
