@@ -14,18 +14,16 @@ export const RegisterPage = () => {
 	const navigate = useNavigate();
 	const { register, handleSubmit } = useForm({ defaultValues });
 
-	const onSubmit = async (data) => {
-		console.log(data);
+	const onSubmit = async (form) => {
+		console.log(form);
 
-		const response = await apiRoot.post('user', data);
-		console.log({ response });
+		const response = await apiRoot.post('user', form);
+		const { data } = response;
 
-		if (response.status !== 200) {
-			alertError(response.message);
+		if (data.status !== 'Ok') {
+			alertError(data.message);
 			return;
 		}
-
-		console.log(response);
 
 		const { message } = response.data;
 
