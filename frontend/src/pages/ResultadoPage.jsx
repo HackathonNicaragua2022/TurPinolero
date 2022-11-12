@@ -1,25 +1,52 @@
 import { Button, Rating } from '@mui/material';
 import queryString from 'query-string';
-import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { SearchButton } from '../components';
+import { alertError, apiRoot } from '../helpers';
 
 export const ResultadoPage = () => {
-	const [texto, setTexto] = useState('');
-
 	const location = useLocation();
 
+	const buscar = async () => {
+		const query = queryString.parse(location.search); // {texto: 'hola mundo ejemplo', tipo: 'Piscina', ubicacion: 'Managua'}
+
+		const datos = {
+			departamento: '',
+			municipio: '',
+			keywords: query.texto,
+			tags: '',
+		};
+
+		const response = await apiRoot.post('location/list', datos);
+		//console.log({ response });
+		const { data } = response;
+
+		if (data.status != 'Ok') {
+			alertError(data.message);
+			return;
+		}
+
+		
+
+		
+	};
+
 	useEffect(() => {
+		buscar();
+	}, []);
+
+	/* 	useEffect(() => {
 		//console.log({ location });
 		const query = queryString.parse(location.search); // {texto: 'hola mundo ejemplo', tipo: 'Piscina', ubicacion: 'Managua'}
 		setTexto(query.texto);
-	}, []);
+	}, []); */
 
 	return (
 		<>
 			<div className="">
 				<div className="ml-20 mr-20 mt-4">
-					<SearchButton texto={texto} />
+					<SearchButton />
 				</div>
 
 				{/* PRINCIPAL RESULTADOS DE BUSQUEDA */}
