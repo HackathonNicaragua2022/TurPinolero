@@ -16,7 +16,7 @@ export const alertSuccess = (text = '', title, despues) => {
 
 export const alertError = (text) => {
 	Swal.fire({
-		title: 'Error!',
+		title: '',
 		text: text,
 		icon: 'error',
 		confirmButtonText: 'Aceptar',

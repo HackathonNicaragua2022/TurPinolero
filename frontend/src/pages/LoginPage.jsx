@@ -12,22 +12,20 @@ export const LoginPage = () => {
 	const navigate = useNavigate();
 	const { register, handleSubmit } = useForm({ defaultValues });
 
-	const onSubmit = async (data) => {
-		console.log(data);
+	const onSubmit = async (form) => {
+		console.log(form);
 
-		const response = await apiRoot.post('user/signIn', data);
-		console.log(response);
+		const response = await apiRoot.post('user/signIn', form);
+		const { data } = response;
 
-		if (response.status !== 200) {
-			alertError('Ocurrio un error');
+		if (data.status !== 'Ok') {
+			alertError(data.message);
 			return;
 		}
 
-		const { token } = response.data;
+		const { token } = data;
 
 		localStorage.setItem('token', token);
-
-		//alertSuccess(MensajeSuccess, 'NICAWIKI', () => navigate(-1)); // Página anterior
 
 		navigate('/dashboard');
 	};

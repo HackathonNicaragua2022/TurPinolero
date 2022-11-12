@@ -1,5 +1,4 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Typography, Grid } from '@mui/material';
-import { Container } from 'postcss';
 import queryString from 'query-string';
 import { useLocation, useParams } from 'react-router-dom';
 
@@ -14,6 +13,11 @@ export const ResultadoPage = () => {
 
 	return (
 		<>
+
+			<div className="bg-cyan-600">
+				aaa
+			</div>
+
 			<div className="flex flex-row mt-10 justify-center">
 				<div className="basis-1/3">
 					<Card sx={{ maxWidth: 345 }}>

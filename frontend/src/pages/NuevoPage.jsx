@@ -76,10 +76,11 @@ export const NuevoPage = () => {
 		console.log(form);
 
 		const response = await apiRoot.post('location', form);
+		console.log({ response });
 
-		if (response.codeStatus !== 200) {
+		if (response.status !== 200) {
 			console.log({ response });
-			alertError(error.message);
+			alertError(response.message);
 			return;
 		}
 

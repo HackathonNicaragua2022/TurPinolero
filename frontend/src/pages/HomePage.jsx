@@ -3,6 +3,7 @@ import { Add as AddIcon } from '@mui/icons-material';
 import LoginIcon from '@mui/icons-material/Login';
 import { SearchButton } from '../components';
 import { useNavigate } from 'react-router-dom';
+import { LocationOnOutlined as LocationIcon, PoolOutlined as PoolIcon } from '@mui/icons-material';
 import logoTexto from '../img/logoTexto.png';
 import logoImagen from '../img/logoImagen.png';
 
@@ -55,6 +56,30 @@ export const HomePage = () => {
 
 			{/* COMPONENTE BÚSQUEDA */}
 			<SearchButton />
+
+			{/* BOTONES DE FILTRO */}
+			<div className="flex justify-center space-x-8 mt-5">
+				<div>
+					<Button
+						startIcon={<LocationIcon />}
+						size="small"
+						style={{ width: '130px' }}
+						variant="outlined"
+					>
+						UBICACIONES
+					</Button>
+				</div>
+				<div>
+					<Button
+						startIcon={<PoolIcon />}
+						size="small"
+						style={{ width: '130px' }}
+						variant="outlined"
+					>
+						TIPOS
+					</Button>
+				</div>
+			</div>
 		</>
 	);
 };
